@@ -1,5 +1,13 @@
-import "./App.css";
+import { Footer, Header } from ".";
+import { LandingPage } from "../pages";
+// import "./App.css";
 
 export function App() {
-  return <>This is the App Component!</>;
+  return (
+    <>
+      <Header />
+      <LandingPage />
+      <Footer />
+    </>
+  );
 }
