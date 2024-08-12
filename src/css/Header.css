@@ -1,0 +1,10 @@
+.header {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  background-image: url("../assets/poster.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 11.3rem;
+}

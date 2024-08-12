@@ -4,9 +4,10 @@ import { useCocktailsContext } from "../hooks";
 export function Header(): ReactElement {
   const { name } = useCocktailsContext();
   return (
-    <>
-      <h1>Header {name}</h1>
-      <p>Header 2</p>
-    </>
+    <div className="header">
+      {/* <img src="../assets/poster.png" alt="" /> */}
+      {/* <h1>Header {name}</h1>
+      <p>Header 2</p> */}
+    </div>
   );
 }
