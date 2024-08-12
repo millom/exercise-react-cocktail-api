@@ -1,0 +1,10 @@
+Current selected drink
+
+Tänk en funktion där ni förslagsvis skickar med argument för url och eventuella andra värden som requestet kommer behöva.
+
+https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch
+
+https://www.freecodecamp.org/news/how-to-fetch-data-from-an-api-using-the-fetch-api-in-javascript/
+
+// Install react router, not needed here
+npm install react-router-dom
