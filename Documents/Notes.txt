@@ -8,3 +8,6 @@ https://www.freecodecamp.org/news/how-to-fetch-data-from-an-api-using-the-fetch-
 
 // Install react router, not needed here
 npm install react-router-dom
+
+// Convert JSON to custom type
+https://developermemos.com/posts/parsing-casting-json-typescript
