@@ -3,9 +3,8 @@ import { Link } from "react-router-dom";
 
 export function Footer(): ReactElement {
   return (
-    <>
-      <h1>Footer</h1>
-      <nav>
+    <div className="footer">
+      <nav className="navbar">
         <Link to="/" className="link">
           Home
         </Link>
@@ -13,6 +12,6 @@ export function Footer(): ReactElement {
           Search
         </Link>
       </nav>
-    </>
+    </div>
   );
 }
