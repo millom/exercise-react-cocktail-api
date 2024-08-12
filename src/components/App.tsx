@@ -1,12 +1,15 @@
 import { Outlet } from "react-router-dom";
 import { Footer, Header } from ".";
+import { CocktailProvider } from "../context/CocktailProvider";
 // import "./App.css";
 
 export function App() {
   return (
     <>
-      <Header />
-      <Outlet />
+      <CocktailProvider>
+        <Header />
+        <Outlet />
+      </CocktailProvider>
       <Footer />
     </>
   );
