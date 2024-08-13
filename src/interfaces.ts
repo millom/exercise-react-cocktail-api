@@ -9,4 +9,6 @@ export interface ICocktail {
 
 export interface ICocktailContext {
   name: string;
+  cocktail: ICocktail | undefined;
+  updateCocktail: (c: ICocktail) => void;
 }
