@@ -1,12 +1,14 @@
 import { ReactElement, useEffect, useState } from "react";
 import { ICocktail } from "../interfaces";
 import { jsonToCocktail } from "../customFunctions";
+import { useCocktailsContext } from "../hooks";
 
-interface ILandingPageProps {
-  cocktail: ICocktail;
-}
+// interface ILandingPageProps {
+//   cocktail: ICocktail;
+// }
 
-export function LandingPage({ cocktail }: ILandingPageProps): ReactElement {
+export function LandingPage(): ReactElement {
+
   const getCocktails: () => void = () => {
     const getRandomDrink = async () => {
       const response = await fetch(
