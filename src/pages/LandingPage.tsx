@@ -1,6 +1,7 @@
 import { ReactElement, useEffect, useState } from "react";
 import { ICocktail } from "../interfaces";
 import { jsonToCocktail } from "../customFunctions";
+import { CocktailCard } from "../components/CocktailCard";
 import { useCocktailsContext } from "../hooks";
 
 // interface ILandingPageProps {
@@ -8,6 +9,7 @@ import { useCocktailsContext } from "../hooks";
 // }
 
 export function LandingPage(): ReactElement {
+  let { cocktail, updateCocktail } = useCocktailsContext();
 
   const getCocktails: () => void = () => {
     const getRandomDrink = async () => {
@@ -21,6 +23,7 @@ export function LandingPage(): ReactElement {
       console.log(cocktailArr);
       [cocktail] = cocktailArr;
       console.log(cocktail);
+      updateCocktail(cocktail);
     };
 
     getRandomDrink();
@@ -30,6 +33,7 @@ export function LandingPage(): ReactElement {
     <div className="main-content">
       <h1>LandingPage</h1>
       <p>LandingPage 2</p>
+      <CocktailCard />
       <button onClick={getCocktails}>New cocktail</button>
     </div>
   );
