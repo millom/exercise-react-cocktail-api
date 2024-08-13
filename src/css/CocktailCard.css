@@ -1,0 +1,23 @@
+.card {
+  display: flex;
+  flex-direction: column;
+  background-color: #1d000d;
+  cursor: pointer;
+  margin: 0.5rem;
+  padding: 0.5rem;
+  height: 17.4rem;
+  width: 16rem;
+}
+
+.image {
+  height: 16rem;
+  width: 16rem;
+  margin-bottom: 0;
+}
+
+.card-text {
+  display: inline;
+  width: 16rem;
+  color: orange;
+  margin-top: 0.4rem;
+}
