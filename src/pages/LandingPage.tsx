@@ -11,8 +11,8 @@ import { useCocktailsContext } from "../hooks";
 export function LandingPage(): ReactElement {
   let { cocktail, updateCocktail } = useCocktailsContext();
 
-  const getCocktails: () => void = () => {
-    const getRandomDrink = async () => {
+  const handleUpdateRandomClick: () => void = () => {
+    const setRandomCocktail = async () => {
       const response = await fetch(
         "https://www.thecocktaildb.com/api/json/v1/1/random.php"
       );
@@ -26,15 +26,15 @@ export function LandingPage(): ReactElement {
       updateCocktail(cocktail);
     };
 
-    getRandomDrink();
+    setRandomCocktail();
   };
 
   return (
     <div className="main-content">
       <h1>LandingPage</h1>
       <p>LandingPage 2</p>
-      <CocktailCard />
-      <button onClick={getCocktails}>New cocktail</button>
+      <CocktailCard cocktail={cocktail} />
+      <button onClick={handleUpdateRandomClick}>New cocktail</button>
     </div>
   );
 }
