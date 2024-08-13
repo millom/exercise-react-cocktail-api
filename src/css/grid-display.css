@@ -1,7 +1,7 @@
 #root {
   height: 100vh;
   display: grid;
-  grid-template-rows: 20% auto 10%;
+  grid-template-rows: 20% 70% 10%;
   grid-template-columns: auto 70% auto;
   background-color: rgb(205, 115, 0);
 }

@@ -1,8 +1,9 @@
 @import url("./App.css");
 @import url("./CocktailCard.css");
 @import url("./Footer.css");
-@import url("./Header.css");
 @import url("./grid-display.css");
+@import url("./Header.css");
+@import url("./SearchPage.css");
 
 body {
   height: 100vh;

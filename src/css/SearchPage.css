@@ -1,0 +1,33 @@
+.search-main {
+}
+
+.cocktail-container {
+  display: flex;
+  justify-content: left;
+  flex-wrap: wrap;
+  height: 94%;
+  margin-block: 2rem;
+
+  overflow: scroll;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+::-webkit-scrollbar {
+  width: 20px;
+}
+
+::-webkit-scrollbar-track {
+  background: #1d000d;
+  box-shadow: inset 0 0 5px grey;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: orange;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgb(255, 185, 25);
+}

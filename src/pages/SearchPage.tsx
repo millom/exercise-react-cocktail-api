@@ -50,9 +50,7 @@ export function SearchPage(): ReactElement {
   };
 
   return (
-    <div className="main-content">
-      <h1>SearchPage</h1>
-      <p>SearchPage 2</p>
+    <div className="main-content search-main">
       <input
         id="search-string"
         type="text"
@@ -60,9 +58,11 @@ export function SearchPage(): ReactElement {
         defaultValue={"margarita"}
       />
       <button onClick={() => handleSearchCocktailsClick()}>Search</button>
-      {cocktailList.map((cocktail) => (
-        <CocktailCard cocktail={cocktail} />
-      ))}
+      <div className="cocktail-container">
+        {cocktailList.map((cocktail) => (
+          <CocktailCard cocktail={cocktail} />
+        ))}
+      </div>
     </div>
   );
 }
