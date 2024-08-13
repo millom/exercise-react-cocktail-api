@@ -28,7 +28,9 @@ export function CocktailProvider({
   //   setCocktail(cocktail);
   // }, [cocktail]);
 
-  const updateCocktail: (c: ICocktail) => void = (c: ICocktail) => {
+  const updateCocktail: (c: ICocktail | undefined) => void = (
+    c: ICocktail | undefined
+  ) => {
     setCocktail(c);
   };
 
