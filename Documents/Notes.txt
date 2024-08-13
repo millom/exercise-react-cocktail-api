@@ -11,3 +11,4 @@ npm install react-router-dom
 
 // Convert JSON to custom type
 https://developermemos.com/posts/parsing-casting-json-typescript
+https://dev.to/codeprototype/safely-parsing-json-to-a-typescript-interface-3lkj
