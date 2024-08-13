@@ -1,15 +1,23 @@
 import { ReactElement } from "react";
 // import { useCocktailsContext } from "../hooks";
 import { ICocktail } from "../interfaces";
+import { useCocktailsContext } from "../hooks";
+import { useNavigate } from "react-router-dom";
 
 interface ICocktailCardProps {
   cocktail: ICocktail | undefined;
 }
 
 export function CocktailCard({ cocktail }: ICocktailCardProps): ReactElement {
-  // const { name, cocktail } = useCocktailsContext();
+  const { updateCocktail } = useCocktailsContext();
+  const navigate = useNavigate();
+
+  const handleGoToCocktailClick = () => {
+    updateCocktail(cocktail);
+    navigate("/details");
+  };
   return (
-    <div className="card" onClick={() => {}}>
+    <div className="card" onClick={handleGoToCocktailClick}>
       {/* {name} */}
       {/* <p>Concktail id: {cocktail?.id}</p> */}
       <img
