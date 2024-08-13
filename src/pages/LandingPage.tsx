@@ -2,7 +2,11 @@ import { ReactElement, useEffect, useState } from "react";
 import { ICocktail } from "../interfaces";
 import { jsonToCocktail } from "../customFunctions";
 
-export function LandingPage(): ReactElement {
+interface ILandingPageProps {
+  cocktail: ICocktail;
+}
+
+export function LandingPage({ cocktail }: ILandingPageProps): ReactElement {
   const getCocktails: () => void = () => {
     const getRandomDrink = async () => {
       const response = await fetch(
@@ -11,8 +15,10 @@ export function LandingPage(): ReactElement {
       const data = await response.json();
       // console.log(data);
 
-      const cocktail2: ICocktail[] = jsonToCocktail(data.drinks);
-      console.log(cocktail2);
+      const cocktailArr: ICocktail[] = jsonToCocktail(data.drinks);
+      console.log(cocktailArr);
+      [cocktail] = cocktailArr;
+      console.log(cocktail);
     };
 
     getRandomDrink();
@@ -22,7 +28,7 @@ export function LandingPage(): ReactElement {
     <div className="main-content">
       <h1>LandingPage</h1>
       <p>LandingPage 2</p>
-      <button onClick={getCocktails}>Click</button>
+      <button onClick={getCocktails}>New cocktail</button>
     </div>
   );
 }
