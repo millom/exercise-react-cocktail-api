@@ -1,16 +1,23 @@
-import { Outlet } from "react-router-dom";
-import { Footer, Header } from ".";
-import { CocktailProvider } from "../context/CocktailProvider";
+// import { Outlet } from "react-router-dom";
+// import { Footer, Header } from ".";
+// import { CocktailProvider } from "../context/CocktailProvider";
+import { RouterProvider } from "react-router-dom";
+import { router } from "../router";
+// import { RootLayout } from ".";
 // import "./App.css";
 
 export function App() {
   return (
-    <>
-      <CocktailProvider>
-        <Header />
-        <Outlet />
-      </CocktailProvider>
-      <Footer />
-    </>
+    <RouterProvider router={router} />
+    // <>
+    //   <RootLayout />
+    // </>
+    // <>
+    //   <CocktailProvider>
+    //     <Header />
+    //     <Outlet />
+    //   </CocktailProvider>
+    //   <Footer />
+    // </>
   );
 }
