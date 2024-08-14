@@ -1,4 +1,4 @@
-import { ReactElement, useRef, useState, MouseEvent } from "react";
+import { ReactElement, useRef, useState, MouseEvent, useEffect } from "react";
 import { ICocktail } from "../interfaces";
 import { jsonToCocktail } from "../customFunctions";
 import { useNavigate } from "react-router-dom";
@@ -6,10 +6,27 @@ import ReactPaginate from "react-paginate";
 // import { CocktailCard } from "../components/CocktailCard";
 
 export function SearchPage(): ReactElement {
+  const itemsPerPage: number = 10;
   const navigate = useNavigate();
   const searchStringRef = useRef<HTMLInputElement>(null);
   const defaultCocktailList: Array<ICocktail> = [];
   const [cocktailList, setCocktailList] = useState(defaultCocktailList);
+
+  const [itemOffset, setItemOffset] = useState(0);
+  const [endOffset, setEndOffset] = useState(0);
+  const [currentItems, setCurrentItems] = useState(cocktailList);
+  const [pageCount, setPageCount] = useState(0);
+  // let endOffset: number = 0; // itemOffset + itemsPerPage;
+  // let currentItems: ICocktail[] = []; //items.slice(itemOffset, endOffset);
+  // let pageCount: number = // Math.ceil(items.length / itemsPerPage);
+
+  useEffect(() => {
+    setEndOffset(itemOffset + itemsPerPage);
+
+    setPageCount(Math.ceil(cocktailList.length / itemsPerPage));
+    const newCurrentItems = cocktailList.slice(itemOffset, endOffset);
+    setCurrentItems(newCurrentItems);
+  }, [itemOffset, itemsPerPage]);
 
   const handleSearchCocktailsClick: (
     event: MouseEvent<HTMLFormElement>
@@ -57,6 +74,14 @@ export function SearchPage(): ReactElement {
     // });
   };
 
+  const handlePageClick: (event: any) => void = (event: any) => {
+    const newOffset = (event.selected * itemsPerPage) % cocktailList.length;
+    console.log(
+      `User requested page number ${event.selected}, which is offset ${newOffset}`
+    );
+    setItemOffset(newOffset);
+  };
+
   return (
     <div className="main-content search-main">
       <form
@@ -76,6 +101,7 @@ export function SearchPage(): ReactElement {
       <div className="cocktail-container">
         <ul className="ul">
           {cocktailList.map((cocktail) => (
+            // {currentItems.map((cocktail) => (
             // <CocktailCard cocktail={cocktail} />
             <li
               key={cocktail.id}
@@ -91,9 +117,9 @@ export function SearchPage(): ReactElement {
         <ReactPaginate
           breakLabel="..."
           nextLabel="next >"
-          onPageChange={() => {}}
-          pageRangeDisplayed={10}
-          pageCount={5}
+          onPageChange={(event) => handlePageClick(event)}
+          pageRangeDisplayed={itemsPerPage}
+          pageCount={pageCount}
           previousLabel="< prev"
           renderOnZeroPageCount={null}
           className="paginate-menu"
