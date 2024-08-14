@@ -1,9 +1,11 @@
 import { ReactElement, useRef, useState, MouseEvent } from "react";
 import { ICocktail } from "../interfaces";
 import { jsonToCocktail } from "../customFunctions";
+import { useNavigate } from "react-router-dom";
 // import { CocktailCard } from "../components/CocktailCard";
 
 export function SearchPage(): ReactElement {
+  const navigate = useNavigate();
   const searchStringRef = useRef<HTMLInputElement>(null);
   const defaultCocktailList: Array<ICocktail> = [];
   const [cocktailList, setCocktailList] = useState(defaultCocktailList);
@@ -73,7 +75,13 @@ export function SearchPage(): ReactElement {
         <ul className="ul">
           {cocktailList.map((cocktail) => (
             // <CocktailCard cocktail={cocktail} />
-            <li key={cocktail.id} className="list-item" onClick={() => {}}>
+            <li
+              key={cocktail.id}
+              className="list-item"
+              onClick={() => {
+                navigate(`/details/${cocktail!.id}`);
+              }}
+            >
               {cocktail.name}
             </li>
           ))}
