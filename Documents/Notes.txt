@@ -12,3 +12,9 @@ npm install react-router-dom
 // Convert JSON to custom type
 https://developermemos.com/posts/parsing-casting-json-typescript
 https://dev.to/codeprototype/safely-parsing-json-to-a-typescript-interface-3lkj
+
+// Install React paginatinte
+npm install react-paginate --save  // I did it without --save
+
+// React pagination
+https://www.bing.com/videos/riverview/relatedvideo?q=react%20pagination&mid=C04BB88E2E933267A41DC04BB88E2E933267A41D&ajaxhist=0
