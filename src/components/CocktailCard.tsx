@@ -9,12 +9,12 @@ interface ICocktailCardProps {
 }
 
 export function CocktailCard({ cocktail }: ICocktailCardProps): ReactElement {
-  const { updateCocktail } = useCocktailsContext();
+  // const { updateCocktail } = useCocktailsContext();
   const navigate = useNavigate();
 
   const handleGoToCocktailClick = () => {
-    updateCocktail(cocktail);
-    navigate("/details");
+    // updateCocktail(cocktail);
+    navigate(`/details/${cocktail!.id}`);
   };
   return (
     <div
