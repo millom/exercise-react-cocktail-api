@@ -117,6 +117,7 @@ export function SearchPage(): ReactElement {
     console.log(
       `User requested page number ${event.selected}, which is offset ${newOffset}`
     );
+    setItemOffset(newOffset);
   };
 
   return (
