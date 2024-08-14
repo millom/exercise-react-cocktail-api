@@ -24,3 +24,9 @@ body {
   color: orange;
   padding: 3rem;
 }
+
+.center-content {
+  display: grid;
+  justify-content: center;
+  align-content: center;
+}
