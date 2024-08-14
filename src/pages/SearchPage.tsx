@@ -12,6 +12,9 @@ export function SearchPage(): ReactElement {
   const defaultCocktailList: Array<ICocktail> = [];
   const [cocktailList, setCocktailList] = useState(defaultCocktailList);
 
+  const [page, setPage] = useState(0);
+  const [filterData, setFilterData] = useState();
+
   const [itemOffset, setItemOffset] = useState(0);
   // const [endOffset, setEndOffset] = useState(0);
   const [currentItems, setCurrentItems] = useState(defaultCocktailList);
@@ -26,6 +29,17 @@ export function SearchPage(): ReactElement {
   ) => void = (event) => {
     event.preventDefault();
     console.log("handleSearchCocktailsClick");
+
+    // setItemOffset(2);
+    // setInitialPage(0);
+    // setInitialPage(1);
+
+    // for (let i: number = 0; i < ul?.childElementCount; i++) {
+    //   ul?.children[1].classList.remove("selected");
+    // }
+    // ul?.children[1].classList.add("selected");
+    // ul?.children[1].children[0].;
+
     const updateCocktailList = async () => {
       const response = await fetch(
         `https://www.thecocktaildb.com/api/json/v1/1/search.php?s=${
@@ -35,7 +49,7 @@ export function SearchPage(): ReactElement {
       );
       const data = await response.json();
       console.log("data:", data, data.drinks);
-      setInitialPage(0);
+      // setInitialPage(0);
       if (data?.drinks === null) {
         setCocktailList([]);
         setPageCount(1);
@@ -89,6 +103,13 @@ export function SearchPage(): ReactElement {
     // console.log("Effect", itemOffset, endOffset);
     // console.log(cocktailList);
   }, [itemOffset, itemsPerPage, pageCount, cocktailList]);
+  // useEffect(() => {
+  //   setFilterData(
+  //     currentItems.filter((item, index) => {
+  //       return (index >= page * n) & (index < (page + 1) * n);
+  //     })
+  //   );
+  // }, [page]);
 
   const handlePageClick: (event: any) => void = (event: any) => {
     // event.preventDefault();
@@ -96,7 +117,6 @@ export function SearchPage(): ReactElement {
     console.log(
       `User requested page number ${event.selected}, which is offset ${newOffset}`
     );
-    setItemOffset(newOffset);
   };
 
   return (
@@ -135,16 +155,17 @@ export function SearchPage(): ReactElement {
           breakLabel="..."
           nextLabel="next >"
           onPageChange={(event) => handlePageClick(event)}
+          // onPageChange={(event) => setPage(event.selected)}
           pageRangeDisplayed={itemsPerPage}
           pageCount={pageCount}
           previousLabel="< prev"
           renderOnZeroPageCount={null}
           className="paginate-menu"
-          forcePage={initialPage}
+          // forcePage={initialPage}
           // onPageActive={() => {
           //   setInitialPage(0);
           // }}
-          initialPage={-1}
+          initialPage={initialPage}
           // initialPage={initialPage}
         ></ReactPaginate>
       </div>
