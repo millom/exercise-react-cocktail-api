@@ -14,8 +14,9 @@ export function SearchPage(): ReactElement {
 
   const [itemOffset, setItemOffset] = useState(0);
   // const [endOffset, setEndOffset] = useState(0);
-  const [currentItems, setCurrentItems] = useState(cocktailList);
+  const [currentItems, setCurrentItems] = useState(defaultCocktailList);
   const [pageCount, setPageCount] = useState(0);
+  const [initialPage, setInitialPage] = useState(0);
   // let endOffset: number = 0; // itemOffset + itemsPerPage;
   // let currentItems: ICocktail[] = []; //items.slice(itemOffset, endOffset);
   // let pageCount: number = // Math.ceil(items.length / itemsPerPage);
@@ -33,10 +34,19 @@ export function SearchPage(): ReactElement {
         { cache: "force-cache" }
       );
       const data = await response.json();
-      console.log(data);
+      console.log("data:", data, data.drinks);
+      setInitialPage(0);
+      if (data?.drinks === null) {
+        setCocktailList([]);
+        setPageCount(1);
+        return;
+      }
+
       const newCocktailList: ICocktail[] = jsonToCocktail(data.drinks);
 
+      setPageCount(Math.ceil(newCocktailList.length / itemsPerPage));
       setCocktailList(newCocktailList);
+      console.log(pageCount);
     };
 
     updateCocktailList();
@@ -67,20 +77,21 @@ export function SearchPage(): ReactElement {
   };
 
   useEffect(() => {
+    console.log("Effect");
     const endOffset = itemOffset + itemsPerPage;
     // setEndOffset(itemOffset + itemsPerPage);
 
-    console.log("Effect", itemOffset, endOffset);
-    setPageCount(Math.ceil(cocktailList.length / itemsPerPage));
-    console.log("Effect", itemOffset, endOffset);
+    // console.log("Effect", itemOffset, endOffset);
+    // console.log("Effect", itemOffset, endOffset);
     const newCurrentItems = cocktailList.slice(itemOffset, endOffset);
     setCurrentItems(newCurrentItems);
-    console.log("Effect", itemOffset, endOffset);
-    console.log(cocktailList);
-  }, [itemOffset, itemsPerPage]);
+    // setPageCount(Math.ceil(cocktailList.length / itemsPerPage));
+    // console.log("Effect", itemOffset, endOffset);
+    // console.log(cocktailList);
+  }, [itemOffset, itemsPerPage, pageCount, cocktailList]);
 
   const handlePageClick: (event: any) => void = (event: any) => {
-    event.preventDefault();
+    // event.preventDefault();
     const newOffset = (event.selected * itemsPerPage) % cocktailList.length;
     console.log(
       `User requested page number ${event.selected}, which is offset ${newOffset}`
@@ -107,7 +118,7 @@ export function SearchPage(): ReactElement {
       <div className="cocktail-container">
         <ul className="ul">
           {/* {cocktailList.map((cocktail) => ( */}
-          {currentItems.map((cocktail) => (
+          {currentItems?.map((cocktail) => (
             // <CocktailCard cocktail={cocktail} />
             <li
               key={cocktail.id}
@@ -129,6 +140,12 @@ export function SearchPage(): ReactElement {
           previousLabel="< prev"
           renderOnZeroPageCount={null}
           className="paginate-menu"
+          forcePage={initialPage}
+          // onPageActive={() => {
+          //   setInitialPage(0);
+          // }}
+          initialPage={-1}
+          // initialPage={initialPage}
         ></ReactPaginate>
       </div>
     </div>
