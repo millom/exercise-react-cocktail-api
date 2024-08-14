@@ -20,7 +20,7 @@ export function LandingPage(): ReactElement {
       // console.log(data);
 
       const cocktailArr: ICocktail[] = jsonToCocktail(data.drinks);
-      console.log(cocktailArr);
+      // console.log(cocktailArr);
       [cocktail] = cocktailArr;
       console.log(cocktail);
       updateCocktail(cocktail);
@@ -28,6 +28,11 @@ export function LandingPage(): ReactElement {
 
     setRandomCocktail();
   };
+
+  useEffect(() => {
+    console.log("cocktail", cocktail);
+    if (!cocktail) handleUpdateRandomClick();
+  }, []);
 
   return (
     <div className="main-content">
