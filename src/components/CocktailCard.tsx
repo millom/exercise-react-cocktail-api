@@ -17,7 +17,11 @@ export function CocktailCard({ cocktail }: ICocktailCardProps): ReactElement {
     navigate("/details");
   };
   return (
-    <div className="card" onClick={handleGoToCocktailClick}>
+    <div
+      className="card"
+      title="Click for more details"
+      onClick={handleGoToCocktailClick}
+    >
       {/* {name} */}
       {/* <p>Concktail id: {cocktail?.id}</p> */}
       <img
