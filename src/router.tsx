@@ -5,7 +5,7 @@ import {
 } from "react-router-dom";
 // import { App } from "./components";
 import { CocktailPage, LandingPage, SearchPage } from "./pages";
-import { RootLayout } from "./components";
+import { RootLayout } from "./pages";
 // import RootLayout from "./components/RootLayout";
 
 export const router = createBrowserRouter(
