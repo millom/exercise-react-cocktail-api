@@ -35,7 +35,7 @@ export function LandingPage(): ReactElement {
   }, []);
 
   return (
-    <div className="main-content">
+    <div className="main-content center-content">
       {/* <CocktailCard cocktail={cocktail} /> */}
       <CocktailCard cocktail={cocktail} />
       <button onClick={handleUpdateRandomClick}>New cocktail</button>
