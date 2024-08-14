@@ -1,14 +1,18 @@
-import { ReactElement, useRef, useState } from "react";
+import { ReactElement, useRef, useState, MouseEvent } from "react";
 import { ICocktail } from "../interfaces";
 import { jsonToCocktail } from "../customFunctions";
-import { CocktailCard } from "../components/CocktailCard";
+// import { CocktailCard } from "../components/CocktailCard";
 
 export function SearchPage(): ReactElement {
   const searchStringRef = useRef<HTMLInputElement>(null);
   const defaultCocktailList: Array<ICocktail> = [];
   const [cocktailList, setCocktailList] = useState(defaultCocktailList);
 
-  const handleSearchCocktailsClick: () => void = () => {
+  const handleSearchCocktailsClick: (
+    event: MouseEvent<HTMLFormElement>
+  ) => void = (event) => {
+    event.preventDefault();
+    console.log("handleSearchCocktailsClick");
     const updateCocktailList = async () => {
       const response = await fetch(
         `https://www.thecocktaildb.com/api/json/v1/1/search.php?s=${
@@ -51,17 +55,29 @@ export function SearchPage(): ReactElement {
 
   return (
     <div className="main-content search-main">
-      <input
-        id="search-string"
-        type="text"
-        ref={searchStringRef}
-        defaultValue={"margarita"}
-      />
-      <button onClick={() => handleSearchCocktailsClick()}>Search</button>
+      <form
+        className="cocktail-container"
+        onSubmit={handleSearchCocktailsClick}
+      >
+        <label htmlFor="search-string">Name: </label>
+        <input
+          id="search-string"
+          type="text"
+          ref={searchStringRef}
+          defaultValue={"margarita"}
+        />
+        {/* <button onClick={() => handleSearchCocktailsClick()}>Search</button> */}
+        <button type="submit">Search</button>
+      </form>
       <div className="cocktail-container">
-        {cocktailList.map((cocktail) => (
-          <CocktailCard cocktail={cocktail} />
-        ))}
+        <ul className="ul">
+          {cocktailList.map((cocktail) => (
+            // <CocktailCard cocktail={cocktail} />
+            <li key={cocktail.id} className="list-item" onClick={() => {}}>
+              {cocktail.name}
+            </li>
+          ))}
+        </ul>
       </div>
     </div>
   );
