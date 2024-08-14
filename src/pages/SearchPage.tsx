@@ -13,20 +13,12 @@ export function SearchPage(): ReactElement {
   const [cocktailList, setCocktailList] = useState(defaultCocktailList);
 
   const [itemOffset, setItemOffset] = useState(0);
-  const [endOffset, setEndOffset] = useState(0);
+  // const [endOffset, setEndOffset] = useState(0);
   const [currentItems, setCurrentItems] = useState(cocktailList);
   const [pageCount, setPageCount] = useState(0);
   // let endOffset: number = 0; // itemOffset + itemsPerPage;
   // let currentItems: ICocktail[] = []; //items.slice(itemOffset, endOffset);
   // let pageCount: number = // Math.ceil(items.length / itemsPerPage);
-
-  useEffect(() => {
-    setEndOffset(itemOffset + itemsPerPage);
-
-    setPageCount(Math.ceil(cocktailList.length / itemsPerPage));
-    const newCurrentItems = cocktailList.slice(itemOffset, endOffset);
-    setCurrentItems(newCurrentItems);
-  }, [itemOffset, itemsPerPage]);
 
   const handleSearchCocktailsClick: (
     event: MouseEvent<HTMLFormElement>
@@ -74,7 +66,21 @@ export function SearchPage(): ReactElement {
     // });
   };
 
+  useEffect(() => {
+    const endOffset = itemOffset + itemsPerPage;
+    // setEndOffset(itemOffset + itemsPerPage);
+
+    console.log("Effect", itemOffset, endOffset);
+    setPageCount(Math.ceil(cocktailList.length / itemsPerPage));
+    console.log("Effect", itemOffset, endOffset);
+    const newCurrentItems = cocktailList.slice(itemOffset, endOffset);
+    setCurrentItems(newCurrentItems);
+    console.log("Effect", itemOffset, endOffset);
+    console.log(cocktailList);
+  }, [itemOffset, itemsPerPage]);
+
   const handlePageClick: (event: any) => void = (event: any) => {
+    event.preventDefault();
     const newOffset = (event.selected * itemsPerPage) % cocktailList.length;
     console.log(
       `User requested page number ${event.selected}, which is offset ${newOffset}`
@@ -100,8 +106,8 @@ export function SearchPage(): ReactElement {
       </form>
       <div className="cocktail-container">
         <ul className="ul">
-          {cocktailList.map((cocktail) => (
-            // {currentItems.map((cocktail) => (
+          {/* {cocktailList.map((cocktail) => ( */}
+          {currentItems.map((cocktail) => (
             // <CocktailCard cocktail={cocktail} />
             <li
               key={cocktail.id}
