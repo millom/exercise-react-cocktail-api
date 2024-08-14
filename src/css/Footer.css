@@ -27,3 +27,9 @@
   text-decoration: none;
   color: orange;
 }
+
+.link-active,
+.link:hover {
+  text-decoration: underline;
+  color: rgb(255, 185, 20);
+}

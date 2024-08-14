@@ -1,16 +1,23 @@
 import { ReactElement } from "react";
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 export function Footer(): ReactElement {
   return (
     <div className="footer">
       <nav className="navbar">
-        <Link to="/" className="link">
+        <NavLink
+          to="/"
+          className={({ isActive }) => (isActive ? "link link-active" : "link")}
+          end
+        >
           Home
-        </Link>
-        <Link to="/search" className="link">
+        </NavLink>
+        <NavLink
+          to="/search"
+          className={({ isActive }) => (isActive ? "link link-active" : "link")}
+        >
           Search
-        </Link>
+        </NavLink>
       </nav>
     </div>
   );
