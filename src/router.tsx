@@ -4,7 +4,7 @@ import {
   Route,
 } from "react-router-dom";
 // import { App } from "./components";
-import { CocktailPage, ErrorPage, LandingPage, SearchPage } from "./pages";
+import { CocktailDetails, ErrorPage, LandingPage, SearchPage } from "./pages";
 import { RootLayout } from "./pages";
 // import RootLayout from "./components/RootLayout";
 
@@ -13,7 +13,7 @@ export const router = createBrowserRouter(
     <Route path="/" element={<RootLayout />} errorElement={<ErrorPage />}>
       <Route index element={<LandingPage />} />
       <Route path="/search" element={<SearchPage />} />
-      <Route path="/details" element={<CocktailPage />} />
+      <Route path="/details" element={<CocktailDetails />} />
     </Route>
   )
 );

@@ -1,4 +1,4 @@
-export * from "./CocktailPage";
+export * from "./CocktailDetails";
 export * from "./ErrorPage";
 export * from "./LandingPage";
 export * from "./SearchPage";

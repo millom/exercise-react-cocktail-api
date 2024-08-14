@@ -1,7 +1,7 @@
 import { ReactElement } from "react";
 import { useCocktailsContext } from "../hooks";
 
-export function CocktailPage(): ReactElement {
+export function CocktailDetails(): ReactElement {
   const { cocktail } = useCocktailsContext();
   console.log(cocktail);
 
