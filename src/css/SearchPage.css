@@ -19,19 +19,55 @@
 .cocktail-container {
   width: 40%;
   display: flex;
-  justify-content: left;
+  flex-direction: column;
+  /* justify-content: left; */
   /* flex-wrap: wrap; */
   /* height: 94%; */
   margin-block: 0;
   border: 0.5rem solid #1d000d;
   border-radius: 1rem;
   padding: 1rem;
+  position: relative;
 
   overflow: scroll;
   overflow-x: hidden;
   overflow-y: auto;
 }
 
+.paginate-menu {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+
+  height: 1.5rem;
+  padding-bottom: 2rem;
+  position: absolute;
+  bottom: 0;
+  left: 4%;
+  right: 4%;
+  color: #1d000d;
+}
+
+.paginate-menu li {
+  list-style-type: none;
+  background-color: ;
+  padding: 1rem;
+  display: grid;
+  justify-content: center;
+  align-content: center;
+  background-color: orange;
+  border-radius: 0.5rem;
+}
+
+.paginate-menu li:first-child,
+.paginate-menu li:last-child {
+  width: 3.5rem;
+}
+
+.cocktail-container .list-item {
+  margin-left: 10%;
+  font-size: 2.2rem;q
+}
 /* ::-webkit-scrollbar {
   width: 20px;
 }

@@ -2,6 +2,7 @@ import { ReactElement, useRef, useState, MouseEvent } from "react";
 import { ICocktail } from "../interfaces";
 import { jsonToCocktail } from "../customFunctions";
 import { useNavigate } from "react-router-dom";
+import ReactPaginate from "react-paginate";
 // import { CocktailCard } from "../components/CocktailCard";
 
 export function SearchPage(): ReactElement {
@@ -87,6 +88,16 @@ export function SearchPage(): ReactElement {
             </li>
           ))}
         </ul>
+        <ReactPaginate
+          breakLabel="..."
+          nextLabel="next >"
+          onPageChange={() => {}}
+          pageRangeDisplayed={10}
+          pageCount={5}
+          previousLabel="< prev"
+          renderOnZeroPageCount={null}
+          className="paginate-menu"
+        ></ReactPaginate>
       </div>
     </div>
   );
