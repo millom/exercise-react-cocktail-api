@@ -14,7 +14,8 @@ export function CocktailDetailsPage(): ReactElement {
   useEffect(() => {
     const setCocktailById = async () => {
       const response = await fetch(
-        `https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=${params.cocktailId}`
+        `https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=${params.cocktailId}`,
+        { cache: "force-cache" }
       );
       const data = await response.json();
       // console.log(data);

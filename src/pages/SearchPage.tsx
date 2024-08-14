@@ -19,7 +19,8 @@ export function SearchPage(): ReactElement {
       const response = await fetch(
         `https://www.thecocktaildb.com/api/json/v1/1/search.php?s=${
           searchStringRef.current!.value
-        }`
+        }`,
+        { cache: "force-cache" }
       );
       const data = await response.json();
       console.log(data);
