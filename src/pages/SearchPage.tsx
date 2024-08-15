@@ -20,6 +20,7 @@ export function SearchPage(): ReactElement {
   const [currentItems, setCurrentItems] = useState(defaultCocktailList);
   const [pageCount, setPageCount] = useState(0);
   const [initialPage, setInitialPage] = useState(0);
+  const [paginateMenuCss, setPaginateMenuCss] = useState("paginate-menu");
   // let endOffset: number = 0; // itemOffset + itemsPerPage;
   // let currentItems: ICocktail[] = []; //items.slice(itemOffset, endOffset);
   // let pageCount: number = // Math.ceil(items.length / itemsPerPage);
@@ -59,6 +60,10 @@ export function SearchPage(): ReactElement {
       const data = await response.json();
       console.log("data:", data, data.drinks);
       // setInitialPage(0);
+      setPaginateMenuCss(
+        cocktailList.length <= 10 ? "paginate-menu hidden" : "paginate-menu"
+      );
+
       if (data?.drinks === null) {
         setCocktailList([]);
         setPageCount(1);
@@ -109,6 +114,7 @@ export function SearchPage(): ReactElement {
     // console.log("Effect", itemOffset, endOffset);
     // console.log("Effect", itemOffset, endOffset);
     const newCurrentItems = cocktailList.slice(itemOffset, endOffset);
+    // setCurrentItems(newCurrentItems);
     setCurrentItems(newCurrentItems);
     // setPageCount(Math.ceil(cocktailList.length / itemsPerPage));
     // console.log("Effect", itemOffset, endOffset);
@@ -173,7 +179,8 @@ export function SearchPage(): ReactElement {
           pageCount={pageCount}
           previousLabel="< prev"
           renderOnZeroPageCount={null}
-          className="paginate-menu"
+          // className={paginateMenuCss}
+          className={pageCount <= 1 ? "paginate-menu hidden" : "paginate-menu"}
           forcePage={initialPage}
           // onPageActive={() => {
           //   setInitialPage(0);

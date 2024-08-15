@@ -93,3 +93,7 @@
 ::-webkit-scrollbar-thumb:hover {
   background: rgb(255, 185, 25);
 }
+
+.hidden {
+  display: none;
+}
