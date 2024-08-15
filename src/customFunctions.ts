@@ -1,6 +1,6 @@
 import { ICocktail, IJSON } from "./interfaces";
 
-export const jsonToCocktail: (drinks: IJSON[]) => ICocktail[] = (
+export const jsonToCocktails: (drinks: IJSON[]) => ICocktail[] = (
   drinks: IJSON[]
 ) => {
   return drinks.map((json: IJSON) => {

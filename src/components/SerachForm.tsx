@@ -1,7 +1,7 @@
 import { ReactElement, useRef, MouseEvent } from "react";
 import { useCocktailsContext } from "../hooks";
 import { IJSON } from "../interfaces";
-import { jsonToCocktail } from "../customFunctions";
+import { jsonToCocktails } from "../customFunctions";
 import { getJSonDataUsingFetch } from "../fetchFunctions";
 
 export function SerachForm(): ReactElement {
@@ -20,7 +20,7 @@ export function SerachForm(): ReactElement {
       }`;
       const jsonDrinks: IJSON[] = await getJSonDataUsingFetch(url);
 
-      updateCocktails(jsonDrinks === null ? [] : jsonToCocktail(jsonDrinks));
+      updateCocktails(jsonDrinks === null ? [] : jsonToCocktails(jsonDrinks));
     };
 
     updateFetchAndCocktails();

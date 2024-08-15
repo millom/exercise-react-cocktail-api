@@ -1,6 +1,6 @@
 import { ReactElement, useEffect, useState } from "react";
 import { ICocktail } from "../interfaces";
-import { jsonToCocktail } from "../customFunctions";
+import { jsonToCocktails } from "../customFunctions";
 import { CocktailCard } from "../components/CocktailCard";
 import { useCocktailsContext } from "../hooks";
 
@@ -19,7 +19,7 @@ export function LandingPage(): ReactElement {
       const data = await response.json();
       // console.log(data);
 
-      const cocktailArr: ICocktail[] = jsonToCocktail(data.drinks);
+      const cocktailArr: ICocktail[] = jsonToCocktails(data.drinks);
       // console.log(cocktailArr);
       [cocktail] = cocktailArr;
       console.log(cocktail);

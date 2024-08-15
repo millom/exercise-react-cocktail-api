@@ -2,7 +2,7 @@ import { ReactElement, useEffect, useState } from "react";
 // import { useCocktailsContext } from "../hooks";
 import { useParams } from "react-router-dom";
 import { ICocktail } from "../interfaces";
-import { jsonToCocktail } from "../customFunctions";
+import { jsonToCocktails } from "../customFunctions";
 
 export function CocktailDetailsPage(): ReactElement {
   const params = useParams();
@@ -20,7 +20,7 @@ export function CocktailDetailsPage(): ReactElement {
       const data = await response.json();
       // console.log(data);
 
-      const cocktailArr: ICocktail[] = jsonToCocktail(data.drinks);
+      const cocktailArr: ICocktail[] = jsonToCocktails(data.drinks);
       // console.log(cocktailArr);
 
       const newCocktail: ICocktail = cocktailArr[0];
