@@ -27,7 +27,7 @@ export function SerachForm(): ReactElement {
   };
 
   return (
-    <div className="main-content search-main">
+    <>
       <form className="cocktail-container" onSubmit={handleSublit}>
         <label htmlFor="search-string">Name: </label>
         <input
@@ -38,6 +38,6 @@ export function SerachForm(): ReactElement {
         />
         <button type="submit">Search</button>
       </form>
-    </div>
+    </>
   );
 }

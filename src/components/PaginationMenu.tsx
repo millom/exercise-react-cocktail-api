@@ -43,7 +43,7 @@ export function PaginationMenu(): ReactElement {
 
   return (
     <>
-      <div className="cocktail-container">
+      <div className="cocktail-container search-result-layout">
         <ul className="ul">
           {currentItems?.map((cocktail) => (
             <li

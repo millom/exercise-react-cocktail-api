@@ -1,0 +1,96 @@
+.list-item {
+  display: block;
+  padding-block: 0.4rem;
+  cursor: pointer;
+  border-bottom: 0.1rem solid orange;
+}
+
+.list-item:last-child {
+  border-bottom: 0;
+}
+
+.search-result-layout {
+  display: grid;
+  grid-template-columns: 100%;
+  grid-template-rows: 85% 10%;
+}
+
+.paginate-menu {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+
+  height: 1.5rem;
+  /* padding-bottom: 2rem; */
+  /* position: relative;
+  bottom: 0;
+  left: 2%;
+  right: 2%; */
+  color: #1d000d;
+}
+
+.paginate-menu li {
+  list-style-type: none;
+  /* background-color: ; */
+  padding: 0.6rem;
+  display: grid;
+  cursor: pointer;
+  justify-content: center;
+  align-content: center;
+  background-color: orange;
+  border-radius: 0.5rem;
+  font-weight: bold;
+}
+
+.paginate-menu li.selected {
+  background-color: rgb(255, 255, 100);
+}
+
+.paginate-menu li:first-child,
+.paginate-menu li:last-child {
+  background-color: orange;
+  width: 2.8rem;
+}
+
+.paginate-menu li:hover {
+  background-color: rgb(255, 255, 100);
+}
+
+.cocktail-container .list-item {
+  margin-left: 10%;
+  font-size: medium;
+}
+
+.ul {
+  margin: 0;
+  margin-block-start: 0;
+  margin-block-end: 0;
+  padding-inline-start: 0;
+
+  overflow: scroll;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+.hidden {
+  display: none;
+}
+
+.cocktail-container ::-webkit-scrollbar {
+  width: 20px;
+}
+
+.cocktail-container ::-webkit-scrollbar-track {
+  background: #1d000d;
+  box-shadow: inset 0 0 5px grey;
+  border-radius: 10px;
+}
+
+.cocktail-container ::-webkit-scrollbar-thumb {
+  background: orange;
+  border-radius: 10px;
+}
+
+.cocktail-container ::-webkit-scrollbar-thumb:hover {
+  background: rgb(255, 185, 25);
+}

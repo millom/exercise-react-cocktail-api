@@ -2,8 +2,10 @@
 @import url("./CocktailCard.css");
 @import url("./CocktailDetailsPage.css");
 @import url("./Footer.css");
-@import url("./grid-display.css");
 @import url("./Header.css");
+@import url("./grid-display.css");
+@import url("./PaginationMenu.css");
+@import url("./SerachForm.css");
 @import url("./SearchPage.css");
 
 body {
