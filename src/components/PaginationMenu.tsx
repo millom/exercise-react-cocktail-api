@@ -3,22 +3,23 @@ import { useCocktailsContext } from "../hooks";
 import { ReactElement, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-function selectTheFirstPage() {
-  const clickEvent = new Event("click", {
-    bubbles: true,
-    cancelable: true,
-  });
-  const ul: HTMLUListElement | null = document.querySelector(".paginate-menu");
-  if (ul === null) return;
-  ul.childNodes[1].childNodes[0].dispatchEvent(clickEvent);
-}
-
 export function PaginationMenu(): ReactElement {
   const { cocktails, searchItemsPerPage } = useCocktailsContext();
   const navigate = useNavigate();
   const [pageCount, setPageCount] = useState(0);
   const [itemOffset, setItemOffset] = useState(0);
   const [currentItems, setCurrentItems] = useState(cocktails);
+
+  const selectTheFirstPage: () => void = () => {
+    const clickEvent = new Event("click", {
+      bubbles: true,
+      cancelable: true,
+    });
+    const ul: HTMLUListElement | null =
+      document.querySelector(".paginate-menu");
+    if (ul === null) return;
+    ul.childNodes[1].childNodes[0].dispatchEvent(clickEvent);
+  };
 
   useEffect(() => {
     setPageCount(Math.ceil(cocktails.length / searchItemsPerPage));
@@ -33,7 +34,6 @@ export function PaginationMenu(): ReactElement {
   }, [itemOffset, pageCount]);
 
   const handlePageClick: (event: any) => void = (event: any) => {
-    // event.preventDefault();
     const newOffset = (event.selected * searchItemsPerPage) % cocktails.length;
     console.log(
       `User requested page number ${event.selected}, which is offset ${newOffset}`
@@ -68,7 +68,6 @@ export function PaginationMenu(): ReactElement {
           className={pageCount <= 1 ? "paginate-menu hidden" : "paginate-menu"}
         ></ReactPaginate>
       </div>
-      ;
     </>
   );
 }
