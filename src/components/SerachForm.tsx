@@ -1,55 +1,34 @@
-import { ReactElement, useRef, useState, MouseEvent, useEffect } from "react";
-import { ICocktail, IJSON } from "../interfaces";
+import { ReactElement, useRef, MouseEvent } from "react";
+import { useCocktailsContext } from "../hooks";
+import { IJSON } from "../interfaces";
 import { jsonToCocktail } from "../customFunctions";
 import { getJSonDataUsingFetch } from "../fetchFunctions";
-import { useCocktailsContext } from "../hooks";
-
-// function selectTheFirstPage() {
-//   const clickEvent = new Event("click", {
-//     bubbles: true,
-//     cancelable: true,
-//   });
-//   const ul: HTMLUListElement | null = document.querySelector(".paginate-menu");
-//   if (ul === null) return;
-//   ul.childNodes[1].childNodes[0].dispatchEvent(clickEvent);
-// }
 
 export function SerachForm(): ReactElement {
-  let { updateCocktails } = useCocktailsContext();
+  const { updateCocktails } = useCocktailsContext();
   const searchStringRef = useRef<HTMLInputElement>(null);
 
-  const handleSearchCocktailsClick: (
-    event: MouseEvent<HTMLFormElement>
-  ) => void = (event) => {
+  const handleSublit: (event: MouseEvent<HTMLFormElement>) => void = (
+    event
+  ) => {
     event.preventDefault();
     console.log("handleSearchCocktailsClick");
 
-    // selectTheFirstPage();
-
-    const updateCocktailList = async () => {
+    const updateFetchAndCocktails = async () => {
       const url: string = `https://www.thecocktaildb.com/api/json/v1/1/search.php?s=${
         searchStringRef.current!.value
       }`;
       const jsonDrinks: IJSON[] = await getJSonDataUsingFetch(url);
 
-      if (jsonDrinks === null) {
-        updateCocktails([]);
-        return;
-      }
-
-      const newCocktailList: ICocktail[] = jsonToCocktail(jsonDrinks);
-      updateCocktails(newCocktailList);
+      updateCocktails(jsonDrinks === null ? [] : jsonToCocktail(jsonDrinks));
     };
 
-    updateCocktailList();
+    updateFetchAndCocktails();
   };
 
   return (
     <div className="main-content search-main">
-      <form
-        className="cocktail-container"
-        onSubmit={handleSearchCocktailsClick}
-      >
+      <form className="cocktail-container" onSubmit={handleSublit}>
         <label htmlFor="search-string">Name: </label>
         <input
           id="search-string"
