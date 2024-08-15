@@ -22,7 +22,10 @@ body {
   grid-column-end: 2;
   margin-block: 0.2rem;
   color: orange;
-  padding: 3rem;
+  /* padding: 1rem; */
+  padding-top: 1rem;
+  padding-bottom: 2rem;
+  /* width: 54rem; */
 }
 
 .center-content {

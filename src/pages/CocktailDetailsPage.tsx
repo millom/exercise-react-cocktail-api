@@ -46,7 +46,7 @@ export function CocktailDetailsPage(): ReactElement {
             <label htmlFor="glassId">Glass: </label>
             <p id="glassId">{cocktail?.glass}</p>
           </div>
-          <div className="line-container">
+          <div className="line-collection-container">
             <label htmlFor="ingredientsId">Ingredients: </label>
             <div id="ingredientsId" className="details-collection">
               {cocktail?.ingredients?.length &&
@@ -56,7 +56,7 @@ export function CocktailDetailsPage(): ReactElement {
                 ))}
             </div>
           </div>
-          <div className="line-container">
+          <div className="line-collection-container">
             <label htmlFor="mesurementsId">Mesurements: </label>
             <div id="mesurementsId" className="details-collection">
               {cocktail?.mesurements?.length &&
@@ -66,7 +66,7 @@ export function CocktailDetailsPage(): ReactElement {
                 ))}
             </div>
           </div>
-          <div className="line-container">
+          <div className="line-collection-container">
             <label htmlFor="tagsId">Tags: </label>
             <div id="tagsId" className="details-collection">
               {cocktail?.tags?.length &&

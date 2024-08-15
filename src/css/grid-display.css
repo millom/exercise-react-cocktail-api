@@ -2,6 +2,6 @@
   height: 100vh;
   display: grid;
   grid-template-rows: 20% 70% 10%;
-  grid-template-columns: auto 70% auto;
+  grid-template-columns: auto 54rem auto;
   background-color: rgb(205, 115, 0);
 }
