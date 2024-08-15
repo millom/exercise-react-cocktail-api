@@ -4,6 +4,7 @@ import { jsonToCocktail } from "../customFunctions";
 import { useNavigate } from "react-router-dom";
 import ReactPaginate from "react-paginate";
 import { getJSonDataUsingFetch } from "../fetchFunctions";
+import { useCocktailsContext } from "../hooks";
 
 function selectTheFirstPage() {
   const clickEvent = new Event("click", {
@@ -16,13 +17,15 @@ function selectTheFirstPage() {
 }
 
 export function SearchPage(): ReactElement {
+  let { cocktails, updateCocktails } = useCocktailsContext();
   const itemsPerPage: number = 10;
   const navigate = useNavigate();
   const searchStringRef = useRef<HTMLInputElement>(null);
-  const defaultCocktailList: Array<ICocktail> = [];
-  const [cocktailList, setCocktailList] = useState(defaultCocktailList);
+  // const defaultCocktailList: Array<ICocktail> = [];
+  // const [cocktailList, setCocktailList] = useState(defaultCocktailList);
   const [itemOffset, setItemOffset] = useState(0);
-  const [currentItems, setCurrentItems] = useState(defaultCocktailList);
+  // const [currentItems, setCurrentItems] = useState(defaultCocktailList);
+  const [currentItems, setCurrentItems] = useState(cocktails);
   const [pageCount, setPageCount] = useState(0);
 
   const handleSearchCocktailsClick: (
@@ -40,14 +43,16 @@ export function SearchPage(): ReactElement {
       const jsonDrinks: IJSON[] = await getJSonDataUsingFetch(url);
 
       if (jsonDrinks === null) {
-        setCocktailList([]);
+        updateCocktails([]);
+        // setCocktailList([]);
         setPageCount(1);
         return;
       }
 
       const newCocktailList: ICocktail[] = jsonToCocktail(jsonDrinks);
 
-      setCocktailList(newCocktailList);
+      // setCocktailList(newCocktailList);
+      updateCocktails(newCocktailList);
       setPageCount(Math.ceil(newCocktailList.length / itemsPerPage));
       console.log(pageCount);
     };
@@ -58,13 +63,13 @@ export function SearchPage(): ReactElement {
   useEffect(() => {
     console.log("Effect");
     const endOffset = itemOffset + itemsPerPage;
-    const newCurrentItems = cocktailList.slice(itemOffset, endOffset);
+    const newCurrentItems = cocktails.slice(itemOffset, endOffset);
     setCurrentItems(newCurrentItems);
-  }, [itemOffset, itemsPerPage, pageCount, cocktailList]);
+  }, [itemOffset, itemsPerPage, pageCount, cocktails]);
 
   const handlePageClick: (event: any) => void = (event: any) => {
     // event.preventDefault();
-    const newOffset = (event.selected * itemsPerPage) % cocktailList.length;
+    const newOffset = (event.selected * itemsPerPage) % cocktails.length;
     console.log(
       `User requested page number ${event.selected}, which is offset ${newOffset}`
     );

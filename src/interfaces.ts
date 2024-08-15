@@ -35,4 +35,10 @@ export interface ICocktailContext {
   searchItemsPerPage: number;
   cocktail: ICocktail | undefined;
   updateCocktail: (c: ICocktail | undefined) => void;
+  cocktails: ICocktail[];
+  updateCocktails: (c: ICocktail[]) => void;
+  // handleSearchCocktailsClick: (
+  //   event: MouseEvent<HTMLFormElement>,
+  //   searchParams: ISearchParams
+  // ) => void;
 }
