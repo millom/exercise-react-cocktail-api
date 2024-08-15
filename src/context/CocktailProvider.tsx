@@ -20,6 +20,7 @@ export const CocktailContext = createContext<ICocktailContext>(
 export function CocktailProvider({
   children,
 }: ICocktailProviderProps): ReactElement {
+  const baseUrl = "https://www.thecocktaildb.com/api/json/v1/1/";
   const name = "Mikael";
   const searchItemsPerPage: number = 10;
   const [cocktail, setCocktail] = useState<ICocktail>();
@@ -84,6 +85,7 @@ export function CocktailProvider({
   // };
 
   const values: ICocktailContext = {
+    baseUrl,
     name,
     searchItemsPerPage,
     cocktail,
