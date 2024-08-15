@@ -5,7 +5,7 @@ import { jsonToCocktail } from "../customFunctions";
 // import ReactPaginate from "react-paginate";
 import { getJSonDataUsingFetch } from "../fetchFunctions";
 import { useCocktailsContext } from "../hooks";
-import { PaginationMenu } from "../components";
+import { PaginationMenu, SerachForm } from "../components";
 
 function selectTheFirstPage() {
   const clickEvent = new Event("click", {
@@ -79,7 +79,8 @@ export function SearchPage(): ReactElement {
 
   return (
     <div className="main-content search-main">
-      <form
+      <SerachForm />
+      {/* <form
         className="cocktail-container"
         onSubmit={handleSearchCocktailsClick}
       >
@@ -91,7 +92,7 @@ export function SearchPage(): ReactElement {
           defaultValue={"margarita"}
         />
         <button type="submit">Search</button>
-      </form>
+      </form> */}
       <PaginationMenu />
       {/* <div className="cocktail-container">
         <ul className="ul">
