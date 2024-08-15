@@ -3,6 +3,16 @@ import { useCocktailsContext } from "../hooks";
 import { ReactElement, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
+function selectTheFirstPage() {
+  const clickEvent = new Event("click", {
+    bubbles: true,
+    cancelable: true,
+  });
+  const ul: HTMLUListElement | null = document.querySelector(".paginate-menu");
+  if (ul === null) return;
+  ul.childNodes[1].childNodes[0].dispatchEvent(clickEvent);
+}
+
 export function PaginationMenu(): ReactElement {
   const { cocktails, searchItemsPerPage } = useCocktailsContext();
   const navigate = useNavigate();
@@ -12,6 +22,7 @@ export function PaginationMenu(): ReactElement {
 
   useEffect(() => {
     setPageCount(Math.ceil(cocktails.length / searchItemsPerPage));
+    selectTheFirstPage();
   }, [cocktails]);
 
   useEffect(() => {

@@ -4,15 +4,15 @@ import { jsonToCocktail } from "../customFunctions";
 import { getJSonDataUsingFetch } from "../fetchFunctions";
 import { useCocktailsContext } from "../hooks";
 
-function selectTheFirstPage() {
-  const clickEvent = new Event("click", {
-    bubbles: true,
-    cancelable: true,
-  });
-  const ul: HTMLUListElement | null = document.querySelector(".paginate-menu");
-  if (ul === null) return;
-  ul.childNodes[1].childNodes[0].dispatchEvent(clickEvent);
-}
+// function selectTheFirstPage() {
+//   const clickEvent = new Event("click", {
+//     bubbles: true,
+//     cancelable: true,
+//   });
+//   const ul: HTMLUListElement | null = document.querySelector(".paginate-menu");
+//   if (ul === null) return;
+//   ul.childNodes[1].childNodes[0].dispatchEvent(clickEvent);
+// }
 
 export function SerachForm(): ReactElement {
   let { updateCocktails } = useCocktailsContext();
@@ -24,7 +24,7 @@ export function SerachForm(): ReactElement {
     event.preventDefault();
     console.log("handleSearchCocktailsClick");
 
-    selectTheFirstPage();
+    // selectTheFirstPage();
 
     const updateCocktailList = async () => {
       const url: string = `https://www.thecocktaildb.com/api/json/v1/1/search.php?s=${
