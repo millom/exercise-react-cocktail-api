@@ -32,6 +32,7 @@ export interface ICocktail {
 
 export interface ICocktailContext {
   name: string;
+  searchItemsPerPage: number;
   cocktail: ICocktail | undefined;
   updateCocktail: (c: ICocktail | undefined) => void;
 }

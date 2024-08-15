@@ -21,6 +21,7 @@ export function CocktailProvider({
   children,
 }: ICocktailProviderProps): ReactElement {
   const name = "Mikael";
+  const searchItemsPerPage: number = 10;
   const [cocktail, setCocktail] = useState<ICocktail>();
 
   // useEffect(() => {
@@ -36,6 +37,7 @@ export function CocktailProvider({
 
   const values: ICocktailContext = {
     name,
+    searchItemsPerPage,
     cocktail,
     updateCocktail,
   };
