@@ -1,8 +1,19 @@
 import { ReactElement, useRef, useState, MouseEvent, useEffect } from "react";
-import { ICocktail } from "../interfaces";
+import { ICocktail, IJSON } from "../interfaces";
 import { jsonToCocktail } from "../customFunctions";
 import { useNavigate } from "react-router-dom";
 import ReactPaginate from "react-paginate";
+import { getJSonDataUsingFetch } from "../fetchFunctions";
+
+function selectTheFirstPage() {
+  const clickEvent = new Event("click", {
+    bubbles: true,
+    cancelable: true,
+  });
+  const ul: HTMLUListElement | null = document.querySelector(".paginate-menu");
+  if (ul === null) return;
+  ul.childNodes[1].childNodes[0].dispatchEvent(clickEvent);
+}
 
 export function SearchPage(): ReactElement {
   const itemsPerPage: number = 10;
@@ -20,30 +31,21 @@ export function SearchPage(): ReactElement {
     event.preventDefault();
     console.log("handleSearchCocktailsClick");
 
-    const ul: HTMLUListElement = document.querySelector(".paginate-menu")!;
-    const clickEvent = new Event("click", {
-      bubbles: true,
-      cancelable: true,
-    });
-    ul?.childNodes[1].childNodes[0].dispatchEvent(clickEvent);
+    selectTheFirstPage();
 
     const updateCocktailList = async () => {
-      const response = await fetch(
-        `https://www.thecocktaildb.com/api/json/v1/1/search.php?s=${
-          searchStringRef.current!.value
-        }`,
-        { cache: "force-cache" }
-      );
-      const data = await response.json();
-      console.log("data:", data, data.drinks);
+      const url: string = `https://www.thecocktaildb.com/api/json/v1/1/search.php?s=${
+        searchStringRef.current!.value
+      }`;
+      const jsonDrinks: IJSON[] = await getJSonDataUsingFetch(url);
 
-      if (data?.drinks === null) {
+      if (jsonDrinks === null) {
         setCocktailList([]);
         setPageCount(1);
         return;
       }
 
-      const newCocktailList: ICocktail[] = jsonToCocktail(data.drinks);
+      const newCocktailList: ICocktail[] = jsonToCocktail(jsonDrinks);
 
       setCocktailList(newCocktailList);
       setPageCount(Math.ceil(newCocktailList.length / itemsPerPage));
