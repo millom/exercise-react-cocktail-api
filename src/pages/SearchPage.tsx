@@ -1,10 +1,11 @@
 import { ReactElement, useRef, useState, MouseEvent, useEffect } from "react";
 import { ICocktail, IJSON } from "../interfaces";
 import { jsonToCocktail } from "../customFunctions";
-import { useNavigate } from "react-router-dom";
-import ReactPaginate from "react-paginate";
+// import { useNavigate } from "react-router-dom";
+// import ReactPaginate from "react-paginate";
 import { getJSonDataUsingFetch } from "../fetchFunctions";
 import { useCocktailsContext } from "../hooks";
+import { PaginationMenu } from "../components";
 
 function selectTheFirstPage() {
   const clickEvent = new Event("click", {
@@ -17,16 +18,16 @@ function selectTheFirstPage() {
 }
 
 export function SearchPage(): ReactElement {
-  let { cocktails, updateCocktails } = useCocktailsContext();
-  const itemsPerPage: number = 10;
-  const navigate = useNavigate();
+  let { updateCocktails } = useCocktailsContext();
+  // const itemsPerPage: number = 10;
+  // const navigate = useNavigate();
   const searchStringRef = useRef<HTMLInputElement>(null);
   // const defaultCocktailList: Array<ICocktail> = [];
   // const [cocktailList, setCocktailList] = useState(defaultCocktailList);
-  const [itemOffset, setItemOffset] = useState(0);
+  // const [itemOffset, setItemOffset] = useState(0);
   // const [currentItems, setCurrentItems] = useState(defaultCocktailList);
-  const [currentItems, setCurrentItems] = useState(cocktails);
-  const [pageCount, setPageCount] = useState(0);
+  // const [currentItems, setCurrentItems] = useState(cocktails);
+  // const [pageCount, setPageCount] = useState(0);
 
   const handleSearchCocktailsClick: (
     event: MouseEvent<HTMLFormElement>
@@ -45,7 +46,7 @@ export function SearchPage(): ReactElement {
       if (jsonDrinks === null) {
         updateCocktails([]);
         // setCocktailList([]);
-        setPageCount(1);
+        // setPageCount(1);
         return;
       }
 
@@ -53,28 +54,28 @@ export function SearchPage(): ReactElement {
 
       // setCocktailList(newCocktailList);
       updateCocktails(newCocktailList);
-      setPageCount(Math.ceil(newCocktailList.length / itemsPerPage));
-      console.log(pageCount);
+      // setPageCount(Math.ceil(newCocktailList.length / itemsPerPage));
+      // console.log(pageCount);
     };
 
     updateCocktailList();
   };
 
-  useEffect(() => {
-    console.log("Effect");
-    const endOffset = itemOffset + itemsPerPage;
-    const newCurrentItems = cocktails.slice(itemOffset, endOffset);
-    setCurrentItems(newCurrentItems);
-  }, [itemOffset, itemsPerPage, pageCount, cocktails]);
+  // useEffect(() => {
+  //   console.log("Effect");
+  //   const endOffset = itemOffset + itemsPerPage;
+  //   const newCurrentItems = cocktails.slice(itemOffset, endOffset);
+  //   setCurrentItems(newCurrentItems);
+  // }, [itemOffset, itemsPerPage, pageCount, cocktails]);
 
-  const handlePageClick: (event: any) => void = (event: any) => {
-    // event.preventDefault();
-    const newOffset = (event.selected * itemsPerPage) % cocktails.length;
-    console.log(
-      `User requested page number ${event.selected}, which is offset ${newOffset}`
-    );
-    setItemOffset(newOffset);
-  };
+  // const handlePageClick: (event: any) => void = (event: any) => {
+  //   // event.preventDefault();
+  //   const newOffset = (event.selected * itemsPerPage) % cocktails.length;
+  //   console.log(
+  //     `User requested page number ${event.selected}, which is offset ${newOffset}`
+  //   );
+  //   setItemOffset(newOffset);
+  // };
 
   return (
     <div className="main-content search-main">
@@ -91,7 +92,8 @@ export function SearchPage(): ReactElement {
         />
         <button type="submit">Search</button>
       </form>
-      <div className="cocktail-container">
+      <PaginationMenu />
+      {/* <div className="cocktail-container">
         <ul className="ul">
           {currentItems?.map((cocktail) => (
             <li
@@ -115,7 +117,7 @@ export function SearchPage(): ReactElement {
           renderOnZeroPageCount={null}
           className={pageCount <= 1 ? "paginate-menu hidden" : "paginate-menu"}
         ></ReactPaginate>
-      </div>
+      </div> */}
     </div>
   );
 }
