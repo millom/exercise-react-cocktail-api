@@ -38,9 +38,44 @@ export function CocktailDetailsPage(): ReactElement {
       <h1 className="details-header">{cocktail?.name}</h1>
       <div className="details-container">
         <article className="details">
-          <p></p>
-          <p>Test {cocktail?.isAlcoholic.toString()}</p>
-          <p>Test {cocktail?.category}</p>
+          <div className="line-container">
+            <label htmlFor="categoryId">Category: </label>
+            <p id="categoryId">{cocktail?.category}</p>
+          </div>
+          <div className="line-container">
+            <label htmlFor="glassId">Glass: </label>
+            <p id="glassId">{cocktail?.glass}</p>
+          </div>
+          <div className="line-container">
+            <label htmlFor="ingredientsId">Ingredients: </label>
+            <div id="ingredientsId" className="details-collection">
+              {cocktail?.ingredients?.length &&
+                cocktail?.ingredients?.length > 0 &&
+                cocktail?.ingredients.map((c) => (
+                  <p className="details-collection-item">{c}</p>
+                ))}
+            </div>
+          </div>
+          <div className="line-container">
+            <label htmlFor="mesurementsId">Mesurements: </label>
+            <div id="mesurementsId" className="details-collection">
+              {cocktail?.mesurements?.length &&
+                cocktail?.mesurements?.length > 0 &&
+                cocktail?.mesurements.map((c) => (
+                  <p className="details-collection-item">{c}</p>
+                ))}
+            </div>
+          </div>
+          <div className="line-container">
+            <label htmlFor="tagsId">Tags: </label>
+            <div id="tagsId" className="details-collection">
+              {cocktail?.tags?.length &&
+                cocktail?.tags?.length > 0 &&
+                cocktail?.tags.map((c) => (
+                  <p className="details-collection-item">{c}</p>
+                ))}
+            </div>
+          </div>
         </article>
         <div className="details-image">
           <img

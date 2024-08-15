@@ -1,3 +1,7 @@
+p {
+  margin: 0;
+}
+
 .details-container {
   display: flex;
   justify-content: space-around;
@@ -8,13 +12,31 @@
 
 .details-header {
   color: orange;
-  font-size: 5rem;
+  font-size: 3rem;
   text-align: center;
   margin: 0;
   /* margin-bottom: 1.4rem; */
   border: 0;
   padding: 0;
+  padding-bottom: 1rem;
   /* height: 80%; */
+}
+
+.line-container {
+  display: flex;
+  justify-content: left;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 1rem;
+}
+
+.details-collection-item {
+  display: inline;
+  flex-wrap: wrap;
+  border: 0.2rem solid black;
+  border-radius: 0.2rem;
+  padding: 0.2rem;
+  margin: 0.2rem;
 }
 
 .details-image {
