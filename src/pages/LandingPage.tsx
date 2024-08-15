@@ -18,8 +18,9 @@ export function LandingPage(): ReactElement {
       );
       const data = await response.json();
       // console.log(data);
-
+      console.log("data.drinks", data.drinks);
       const cocktailArr: ICocktail[] = jsonToCocktails(data.drinks);
+      console.log("cocktailArr", cocktailArr);
       // console.log(cocktailArr);
       [cocktail] = cocktailArr;
       console.log(cocktail);
