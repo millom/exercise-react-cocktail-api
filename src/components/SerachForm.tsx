@@ -2,7 +2,8 @@ import { ReactElement, useRef, MouseEvent, useEffect, useState } from "react";
 import { useCocktailsContext } from "../hooks";
 import { IJSON, IFilterParams } from "../interfaces";
 import {
-  jsonToCocktails,
+  // jsonToCocktails,
+  simpleJsonToCocktails,
   // getSearchParams,
   getFilterParams,
 } from "../customFunctions";
@@ -14,8 +15,8 @@ export function SerachForm(): ReactElement {
   const nameCheckRef = useRef<HTMLInputElement>(null);
   const categoryRef = useRef<HTMLInputElement>(null);
   const glassTypeRef = useRef<HTMLInputElement>(null);
-  // const categoryCheckRef = useRef<HTMLInputElement>(null);
-  // const glassTypeCheckRef = useRef<HTMLInputElement>(null);
+  const categoryCheckRef = useRef<HTMLInputElement>(null);
+  const glassTypeCheckRef = useRef<HTMLInputElement>(null);
   const defaultFilterParams: IFilterParams = {
     command: "filter.php?",
     paramArray: [
@@ -49,7 +50,9 @@ export function SerachForm(): ReactElement {
       console.log(url);
       const jsonDrinks: IJSON[] = await getJSonDataUsingFetch(url);
 
-      updateCocktails(jsonDrinks === null ? [] : jsonToCocktails(jsonDrinks));
+      updateCocktails(
+        jsonDrinks === null ? [] : simpleJsonToCocktails(jsonDrinks)
+      );
     };
 
     updateFetchAndCocktails();
@@ -59,14 +62,15 @@ export function SerachForm(): ReactElement {
   useEffect(() => {
     nameCheckRef.current!.checked = true;
     searchParams.paramArray[0].use = true;
-    console.log(nameRef.current);
     searchParams.paramArray[0].fieldValue = nameRef.current!.value;
     searchParams.paramArray[0].fieldName =
       nameRef.current!.value.length > 1 ? "s" : "f";
     setSearchParams(searchParams);
 
+    categoryCheckRef.current!.checked = false;
     filterParams.paramArray[0].use = false;
     filterParams.paramArray[0].fieldValue = categoryRef.current!.value;
+    glassTypeCheckRef.current!.checked = false;
     filterParams.paramArray[1].use = false;
     filterParams.paramArray[1].fieldValue = glassTypeRef.current!.value;
     setFilterParams(filterParams);
@@ -94,7 +98,8 @@ export function SerachForm(): ReactElement {
             type="text"
             ref={nameRef}
             onChange={(event) => {
-              searchParams.paramArray[0].fieldValue = event.target.value;
+              searchParams.paramArray[0].fieldValue =
+                event.target.value.replace(" ", "_");
               searchParams.paramArray[0].fieldName =
                 searchParams.paramArray[0].fieldValue.length > 1 ? "s" : "f";
               setSearchParams(searchParams);
@@ -106,7 +111,7 @@ export function SerachForm(): ReactElement {
           <input
             type="checkbox"
             title="Selected or not"
-            // ref={searchNameRef}
+            ref={categoryCheckRef}
             // defaultValue="false"
             onChange={(event) => {
               filterParams.paramArray[0].use = event.target.checked;
@@ -120,7 +125,8 @@ export function SerachForm(): ReactElement {
             type="text"
             ref={categoryRef}
             onChange={(event) => {
-              filterParams.paramArray[0].fieldValue = event.target.value;
+              filterParams.paramArray[0].fieldValue =
+                event.target.value.replace(" ", "_");
               setFilterParams(filterParams);
             }}
             defaultValue={"cocktail"}
@@ -136,7 +142,7 @@ export function SerachForm(): ReactElement {
               filterParams.paramArray[1].use = event.target.checked;
               setFilterParams(filterParams);
             }}
-            // ref={glassTypeCheckRef}
+            ref={glassTypeCheckRef}
           />
           <label htmlFor="searchGlassTypeId">Glass type: </label>
           <input
@@ -144,7 +150,8 @@ export function SerachForm(): ReactElement {
             type="text"
             ref={glassTypeRef}
             onChange={(event) => {
-              filterParams.paramArray[1].fieldValue = event.target.value;
+              filterParams.paramArray[1].fieldValue =
+                event.target.value.replace(" ", "_");
               setFilterParams(filterParams);
             }}
             defaultValue={"Cocktail glass"}

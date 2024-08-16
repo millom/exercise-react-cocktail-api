@@ -146,6 +146,18 @@ export const jsonToCocktails: (drinks: IJSON[]) => ICocktail[] = (
   });
 };
 
+export const simpleJsonToCocktails: (drinks: IJSON[]) => ICocktail[] = (
+  drinks: IJSON[]
+) => {
+  return drinks.map((json: IJSON) => {
+    // console.log(typeof json, json);
+    return {
+      id: json.idDrink,
+      name: json.strDrink,
+    };
+  });
+};
+
 export const getSearchParams: (name: string) => string = (name) => {
   return `search.php?${name.length == 1 ? "f" : "s"}=${name}`;
 };

@@ -1,3 +1,8 @@
+export interface SimpleJSON {
+  idDrink: string;
+  strDrink: string;
+}
+
 export interface IJSON {
   idDrink: string;
   strDrink: string;
@@ -42,10 +47,10 @@ export interface ICocktail {
   id: string;
   name: string;
   tags?: string[];
-  glass: string;
-  imgSrc: string;
-  category: string;
-  isAlcoholic: boolean;
+  glass?: string;
+  imgSrc?: string;
+  category?: string;
+  isAlcoholic?: boolean;
   ingredients?: Array<string>;
   mesurements?: Array<string>;
 }
