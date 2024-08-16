@@ -120,6 +120,32 @@ export function SearchForm(): ReactElement {
           defaultValue={"margarita"}
         />
       </div>
+      <div>
+        <input
+          type="checkbox"
+          title="Selected or not"
+          // disabled={disableFilterParams}
+          // ref={searchNameRef}
+          // defaultValue="false"
+          onChange={(event) => {
+            filterParams.alcoholicFilter!.use = event.target.checked;
+            // setFilterParams(filterParams);
+          }}
+          ref={alcoholicCheckRef}
+        />
+        <label htmlFor="searchGlassTypeId">Is Alocoholic: </label>
+        <input
+          id="searchGlassTypeId"
+          type="checkbox"
+          ref={alcoholicRef}
+          // disabled={disableFilterParams}
+          onChange={(event) => {
+            filterParams.alcoholicFilter!.isAlcohol = event.target.checked;
+            // setFilterParams(filterParams);
+          }}
+          defaultValue="false"
+        />
+      </div>
       <div className={disableFilterParams ? "filter-param-disabled" : ""}>
         <input
           type="checkbox"
@@ -176,32 +202,6 @@ export function SearchForm(): ReactElement {
             // setFilterParams(filterParams);
           }}
           defaultValue={"Cocktail glass"}
-        />
-      </div>
-      <div className={disableFilterParams ? "filter-param-disabled" : ""}>
-        <input
-          type="checkbox"
-          title="Selected or not"
-          disabled={disableFilterParams}
-          // ref={searchNameRef}
-          // defaultValue="false"
-          onChange={(event) => {
-            filterParams.alcoholicFilter!.use = event.target.checked;
-            // setFilterParams(filterParams);
-          }}
-          ref={alcoholicCheckRef}
-        />
-        <label htmlFor="searchGlassTypeId">Is Alocoholic: </label>
-        <input
-          id="searchGlassTypeId"
-          type="checkbox"
-          ref={alcoholicRef}
-          disabled={disableFilterParams}
-          onChange={(event) => {
-            filterParams.alcoholicFilter!.isAlcohol = event.target.checked;
-            // setFilterParams(filterParams);
-          }}
-          defaultValue="false"
         />
       </div>
       <button type="submit">Search</button>
