@@ -70,7 +70,7 @@ export function SearchForm(): ReactElement {
     searchParams.paramArray[0].fieldValue = nameRef.current!.value;
     searchParams.paramArray[0].fieldName =
       nameRef.current!.value.length > 1 ? "s" : "f";
-    setSearchParams(searchParams);
+    // setSearchParams(searchParams);
 
     categoryCheckRef.current!.checked = false;
     filterParams.paramArray[0].use = false;
@@ -82,9 +82,9 @@ export function SearchForm(): ReactElement {
 
     alcoholicRef.current!.checked = false;
     alcoholicCheckRef.current!.checked = false;
-    filterParams.alcoholicFilter.use = false;
-    filterParams.alcoholicFilter.isAlcohol = false;
-    setFilterParams(filterParams);
+    filterParams.alcoholicFilter!.use = false;
+    filterParams.alcoholicFilter!.isAlcohol = false;
+    // setFilterParams(filterParams);
   }, []);
 
   return (
@@ -97,7 +97,7 @@ export function SearchForm(): ReactElement {
           // defaultValue=true
           onChange={(event) => {
             searchParams.paramArray[0].use = event.target.checked;
-            setSearchParams(searchParams);
+            // setSearchParams(searchParams);
             setDisableFilterParams(event.target.checked);
           }}
           ref={nameCheckRef}
@@ -115,7 +115,7 @@ export function SearchForm(): ReactElement {
             );
             searchParams.paramArray[0].fieldName =
               searchParams.paramArray[0].fieldValue.length > 1 ? "s" : "f";
-            setSearchParams(searchParams);
+            // setSearchParams(searchParams);
           }}
           defaultValue={"margarita"}
         />
@@ -129,7 +129,7 @@ export function SearchForm(): ReactElement {
           // defaultValue="false"
           onChange={(event) => {
             filterParams.paramArray[0].use = event.target.checked;
-            setFilterParams(filterParams);
+            // setFilterParams(filterParams);
           }}
           // ref={categoryCheckRef}
         />
@@ -144,7 +144,7 @@ export function SearchForm(): ReactElement {
               " ",
               "_"
             );
-            setFilterParams(filterParams);
+            // setFilterParams(filterParams);
           }}
           defaultValue={"cocktail"}
         />
@@ -158,7 +158,7 @@ export function SearchForm(): ReactElement {
           // defaultValue="false"
           onChange={(event) => {
             filterParams.paramArray[1].use = event.target.checked;
-            setFilterParams(filterParams);
+            // setFilterParams(filterParams);
           }}
           ref={glassTypeCheckRef}
         />
@@ -173,7 +173,7 @@ export function SearchForm(): ReactElement {
               " ",
               "_"
             );
-            setFilterParams(filterParams);
+            // setFilterParams(filterParams);
           }}
           defaultValue={"Cocktail glass"}
         />
@@ -186,8 +186,8 @@ export function SearchForm(): ReactElement {
           // ref={searchNameRef}
           // defaultValue="false"
           onChange={(event) => {
-            filterParams.alcoholicFilter.use = event.target.checked;
-            setFilterParams(filterParams);
+            filterParams.alcoholicFilter!.use = event.target.checked;
+            // setFilterParams(filterParams);
           }}
           ref={alcoholicCheckRef}
         />
@@ -198,8 +198,8 @@ export function SearchForm(): ReactElement {
           ref={alcoholicRef}
           disabled={disableFilterParams}
           onChange={(event) => {
-            filterParams.alcoholicFilter.isAlcohol = event.target.checked;
-            setFilterParams(filterParams);
+            filterParams.alcoholicFilter!.isAlcohol = event.target.checked;
+            // setFilterParams(filterParams);
           }}
           defaultValue="false"
         />
