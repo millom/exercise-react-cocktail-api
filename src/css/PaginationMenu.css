@@ -34,7 +34,7 @@
 .paginate-menu li {
   list-style-type: none;
   /* background-color: ; */
-  padding: 0.6rem;
+  /* padding: 0.6rem; */
   display: grid;
   cursor: pointer;
   justify-content: center;
@@ -42,11 +42,27 @@
   background-color: orange;
   border-radius: 0.5rem;
   font-weight: bold;
+  display: grid;
+  justify-items: center;
+  align-items: center;
+  /* padding-inline: 0.5rem; */
 }
 
 .paginate-menu li a {
   height: 100%;
   width: 100%;
+  /* border: 1rem solid; */
+  border-radius: 0.4rem;
+  padding: 0.6rem;
+  display: grid;
+  justify-items: center;
+  align-items: center;
+  margin: 0;
+}
+
+.paginate-menu li:first-child a,
+.paginate-menu li:last-child a {
+  padding-inline: 0.5rem;
 }
 
 .paginate-menu li.selected {
@@ -57,6 +73,7 @@
 .paginate-menu li:last-child {
   background-color: orange;
   width: 2.8rem;
+  padding-inline: 0.5rem;
 }
 
 .paginate-menu li:hover {
