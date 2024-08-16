@@ -7,6 +7,8 @@
 @import url("./PaginationMenu.css");
 @import url("./SerachForm.css");
 @import url("./SearchPage.css");
+@import url("./SearchResult.css");
+@import url("./SearchResultList.css");
 
 body {
   height: 100vh;
@@ -26,7 +28,7 @@ body {
   color: orange;
   /* padding: 1rem; */
   padding-top: 1rem;
-  padding-bottom: 2rem;
+  padding-bottom: 1rem;
   /* width: 54rem; */
 }
 

@@ -1,14 +1,12 @@
-.search-main {
+.search-result-layout {
   display: grid;
-  grid-template-columns: 38% 48%;
-  grid-template-rows: 100%;
-  justify-content: left;
-  gap: 4rem;
-  padding: 1rem;
-  /* justify-content: space-around; */
+  grid-template-columns: 100%;
+  grid-template-rows: 88% 12%;
+  /* justify-content: center; */
+  /* grid-template-rows: auto 3rem; */
 }
 
-.cocktail-container1 {
+.cocktail-container {
   width: 100%;
 
   /* display: flex;
