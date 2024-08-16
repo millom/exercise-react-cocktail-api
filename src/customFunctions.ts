@@ -177,5 +177,12 @@ export const getFilterParams: (filterParams: IFilterParams) => string = (
     addedBefore = true;
   }
 
+  if (filterParams.alcoholicFilter?.use) {
+    if (addedBefore) filterStr += "&";
+    filterStr += `${filterParams.alcoholicFilter.fieldName}=${
+      filterParams.alcoholicFilter.isAlcohol ? "Alcoholic" : "Non_Alcoholic"
+    }`;
+  }
+
   return filterStr;
 };

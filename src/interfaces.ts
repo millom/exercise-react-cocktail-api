@@ -81,12 +81,14 @@ export interface IFilterParam {
   name: string; // Identify parameter, not used in fetch
   fieldName?: string;
   fieldValue?: string;
+  isAlcohol?: boolean;
   use?: boolean;
 }
 
 export interface IFilterParams {
   command: string; // "filter.php?";
   paramArray: Array<IFilterParam>;
+  alcoholicFilter: IFilterParam;
   // categoryVar: string; //"c=";
   // useCategory?: boolean;
   // category?: string;
