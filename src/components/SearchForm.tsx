@@ -9,7 +9,7 @@ import {
 } from "../customFunctions";
 import { getJSonDataUsingFetch } from "../fetchFunctions";
 
-export function SerachForm(): ReactElement {
+export function SearchForm(): ReactElement {
   const { updateCocktails, baseUrl } = useCocktailsContext();
   const nameRef = useRef<HTMLInputElement>(null);
   const nameCheckRef = useRef<HTMLInputElement>(null);
