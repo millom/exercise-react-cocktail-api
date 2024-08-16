@@ -35,7 +35,7 @@ export function SearchForm(): ReactElement {
   const [searchParams, setSearchParams] = useState(defaultSearchParams);
   const [disableFilterParams, setDisableFilterParams] = useState(false);
 
-  const handleSublit: (event: MouseEvent<HTMLFormElement>) => void = (
+  const handleSubmit: (event: MouseEvent<HTMLFormElement>) => void = (
     event
   ) => {
     event.preventDefault();
@@ -88,7 +88,7 @@ export function SearchForm(): ReactElement {
   }, []);
 
   return (
-    <form className="cocktail-container" onSubmit={handleSublit}>
+    <form className="cocktail-container" onSubmit={handleSubmit}>
       <div>
         <input
           type="checkbox"

@@ -88,7 +88,7 @@ export interface IFilterParam {
 export interface IFilterParams {
   command: string; // "filter.php?";
   paramArray: Array<IFilterParam>;
-  alcoholicFilter: IFilterParam;
+  alcoholicFilter?: IFilterParam;
   // categoryVar: string; //"c=";
   // useCategory?: boolean;
   // category?: string;
