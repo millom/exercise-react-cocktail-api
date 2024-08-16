@@ -1,0 +1,4 @@
+.filter-param-disabled {
+  pointer-events: none;
+  color: dimgray;
+}

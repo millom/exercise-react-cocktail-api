@@ -30,6 +30,7 @@ export function SerachForm(): ReactElement {
     paramArray: [{ use: true, name: "Name or first letter in name" }],
   };
   const [searchParams, setSearchParams] = useState(defaultSearchParams);
+  const [disableFilterParams, setDisableFilterParams] = useState(false);
 
   const handleSublit: (event: MouseEvent<HTMLFormElement>) => void = (
     event
@@ -60,6 +61,7 @@ export function SerachForm(): ReactElement {
 
   // Set default value for nameCheckRef
   useEffect(() => {
+    setDisableFilterParams(true);
     nameCheckRef.current!.checked = true;
     searchParams.paramArray[0].use = true;
     searchParams.paramArray[0].fieldValue = nameRef.current!.value;
@@ -88,6 +90,7 @@ export function SerachForm(): ReactElement {
             onChange={(event) => {
               searchParams.paramArray[0].use = event.target.checked;
               setSearchParams(searchParams);
+              setDisableFilterParams(event.target.checked);
             }}
             ref={nameCheckRef}
             // checked
@@ -107,11 +110,12 @@ export function SerachForm(): ReactElement {
             defaultValue={"margarita"}
           />
         </div>
-        <div>
+        <div className={disableFilterParams ? "filter-param-disabled" : ""}>
           <input
             type="checkbox"
             title="Selected or not"
             ref={categoryCheckRef}
+            disabled={disableFilterParams}
             // defaultValue="false"
             onChange={(event) => {
               filterParams.paramArray[0].use = event.target.checked;
@@ -124,6 +128,7 @@ export function SerachForm(): ReactElement {
             id="searchCategoryId"
             type="text"
             ref={categoryRef}
+            disabled={disableFilterParams}
             onChange={(event) => {
               filterParams.paramArray[0].fieldValue =
                 event.target.value.replace(" ", "_");
@@ -132,10 +137,11 @@ export function SerachForm(): ReactElement {
             defaultValue={"cocktail"}
           />
         </div>
-        <div>
+        <div className={disableFilterParams ? "filter-param-disabled" : ""}>
           <input
             type="checkbox"
             title="Selected or not"
+            disabled={disableFilterParams}
             // ref={searchNameRef}
             // defaultValue="false"
             onChange={(event) => {
@@ -149,6 +155,7 @@ export function SerachForm(): ReactElement {
             id="searchGlassTypeId"
             type="text"
             ref={glassTypeRef}
+            disabled={disableFilterParams}
             onChange={(event) => {
               filterParams.paramArray[1].fieldValue =
                 event.target.value.replace(" ", "_");
