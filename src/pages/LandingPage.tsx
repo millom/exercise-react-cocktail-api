@@ -1,30 +1,39 @@
 import { ReactElement, useEffect, useState } from "react";
-import { ICocktail } from "../interfaces";
+import { ICocktail, IJSON } from "../interfaces";
 import { jsonToCocktails } from "../customFunctions";
 import { CocktailCard } from "../components/CocktailCard";
 import { useCocktailsContext } from "../hooks";
+import { getJSonDataUsingFetchNoCache } from "../fetchFunctions";
 
 // interface ILandingPageProps {
 //   cocktail: ICocktail;
 // }
 
 export function LandingPage(): ReactElement {
-  let { cocktail, updateCocktail } = useCocktailsContext();
+  let { baseUrl, cocktail, updateCocktail } = useCocktailsContext();
 
   const handleUpdateRandomClick: () => void = () => {
     const setRandomCocktail = async () => {
-      const response = await fetch(
-        "https://www.thecocktaildb.com/api/json/v1/1/random.php"
+      const url: string = `${baseUrl}random.php`;
+      const jsonDrinks: IJSON[] = await getJSonDataUsingFetchNoCache(url);
+
+      updateCocktail(
+        jsonDrinks === null ? undefined : jsonToCocktails(jsonDrinks)[0]
       );
-      const data = await response.json();
-      // console.log(data);
-      console.log("data.drinks", data.drinks);
-      const cocktailArr: ICocktail[] = jsonToCocktails(data.drinks);
-      console.log("cocktailArr", cocktailArr);
-      // console.log(cocktailArr);
-      [cocktail] = cocktailArr;
-      console.log(cocktail);
-      updateCocktail(cocktail);
+      console.log("new:", cocktail);
+
+      // const response = await fetch(
+      //   "https://www.thecocktaildb.com/api/json/v1/1/random.php"
+      // );
+      // const data = await response.json();
+      // // console.log(data);
+      // console.log("data.drinks", data.drinks);
+      // const cocktailArr: ICocktail[] = jsonToCocktails(data.drinks);
+      // console.log("cocktailArr", cocktailArr);
+      // // console.log(cocktailArr);
+      // [cocktail] = cocktailArr;
+      // console.log(cocktail);
+      // updateCocktail(cocktail);
     };
 
     setRandomCocktail();

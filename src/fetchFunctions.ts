@@ -9,3 +9,11 @@ export const getJSonDataUsingFetch: (
   // const data = await response.json();
   return (await response.json()).drinks;
 };
+
+export const getJSonDataUsingFetchNoCache: (
+  searchUrl: string
+) => IJSON[] | any = async (searchUrl) => {
+  const response = await fetch(searchUrl, { cache: "no-store" });
+  // const data = await response.json();
+  return (await response.json()).drinks;
+};
