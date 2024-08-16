@@ -26,6 +26,7 @@ export function CocktailProvider({
   const [cocktail, setCocktail] = useState<ICocktail>();
   const defaultCocktails: ICocktail[] = [];
   const [cocktails, setCocktails] = useState(defaultCocktails);
+  const [nonAlkoholic, setOnlyNonAlkoholic] = useState(false);
 
   // useEffect(() => {
   //   console.log("Provider:", cocktail);
@@ -40,6 +41,12 @@ export function CocktailProvider({
 
   const updateCocktails: (c: ICocktail[]) => void = (c: ICocktail[]) => {
     setCocktails(c);
+  };
+
+  const updateNonAlkoholic: (nonAlkoholic: boolean) => void = (
+    nonAlkoholic
+  ) => {
+    setOnlyNonAlkoholic(nonAlkoholic);
   };
 
   // const handleSearchCocktailsClick: (
@@ -92,6 +99,8 @@ export function CocktailProvider({
     updateCocktail,
     cocktails,
     updateCocktails,
+    nonAlkoholic: nonAlkoholic,
+    updateNonAlkoholic: updateNonAlkoholic,
   };
 
   return (

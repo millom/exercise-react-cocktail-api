@@ -19,6 +19,7 @@
   /* height: 100%; */
   /* width: 54rem; */
   /* height: 22%; */
+  position: relative;
 }
 
 .header-img {
@@ -28,4 +29,21 @@
   background-image: url("../assets/poster.png");
   background-repeat: no-repeat;
   background-size: cover;
+}
+
+.non-alkoholic-container {
+  display: flex;
+  justify-items: left;
+  gap: 0.4rem;
+  position: absolute;
+  bottom: 2rem;
+  left: 2rem;
+}
+
+.non-alkoholic-label {
+  color: orange;
+}
+
+.non-alkoholic-checkbox {
+  color: orange;
 }

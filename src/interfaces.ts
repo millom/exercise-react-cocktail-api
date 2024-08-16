@@ -63,6 +63,8 @@ export interface ICocktailContext {
   cocktails: ICocktail[];
   updateCocktails: (c: ICocktail[]) => void;
   baseUrl: string;
+  nonAlkoholic: boolean;
+  updateNonAlkoholic: (nonAlkoholic: boolean) => void;
   // handleSearchCocktailsClick: (
   //   event: MouseEvent<HTMLFormElement>,
   //   searchParams: ISearchParams
