@@ -4,7 +4,6 @@ import { useCocktailsContext } from "../hooks";
 import { ICocktail } from "../interfaces";
 
 interface ISearchResultListProps {
-  // currentItems: ICocktail[] | undefined;
   upadteCurrentItems: (newCurrentItems: ICocktail[]) => void;
 }
 
@@ -38,7 +37,6 @@ export function PaginationMenu({
     console.log("Effect");
     const endOffset = itemOffset + searchItemsPerPage;
     const newCurrentItems = cocktails.slice(itemOffset, endOffset);
-    // setCurrentItems(newCurrentItems);
     upadteCurrentItems(newCurrentItems);
   }, [itemOffset, pageCount]);
 
