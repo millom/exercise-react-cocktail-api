@@ -5,7 +5,6 @@ export function SearchPage(): ReactElement {
   return (
     <div className="main-content search-main">
       <SerachForm />
-      {/* <PaginationMenu /> */}
       <SearchResult />
     </div>
   );
