@@ -1,4 +1,4 @@
-import { ICocktail, IJSON } from "./interfaces";
+import { ICocktail, IFilterParams, IJSON } from "./interfaces";
 
 // const mapJsonToStringJSon: (jsonArr: IJSON[]) => IJSON[] = (jsonArr) => {
 //   return jsonArr.map((json: IJSON) => {
@@ -144,4 +144,26 @@ export const jsonToCocktails: (drinks: IJSON[]) => ICocktail[] = (
     }
     return cocktail;
   });
+};
+
+export const getSearchParams: (name: string) => string = (name) => {
+  return `search.php?${name.length == 1 ? "f" : "s"}=${name}`;
+};
+
+export const getFilterParams: (filterParams: IFilterParams) => string = (
+  filterParams
+) => {
+  let filterStr: string = filterParams.command;
+
+  let addedBefore: boolean = false;
+  for (const param of filterParams.paramArray) {
+    if (!param.use) continue;
+
+    if (addedBefore) filterStr += "&";
+
+    filterStr += `${param.fieldName}=${param.fieldValue}`;
+    addedBefore = true;
+  }
+
+  return filterStr;
 };

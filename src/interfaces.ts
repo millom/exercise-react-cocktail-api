@@ -63,3 +63,29 @@ export interface ICocktailContext {
   //   searchParams: ISearchParams
   // ) => void;
 }
+
+export interface ISearchParams {
+  command: "search.php?";
+  isCategory: boolean;
+  category: string;
+  isGlassType: boolean;
+  glassType: string;
+}
+
+export interface IFilterParam {
+  name: string; // Identify parameter, not used in fetch
+  fieldName?: string;
+  fieldValue?: string;
+  use?: boolean;
+}
+
+export interface IFilterParams {
+  command: string; // "filter.php?";
+  paramArray: Array<IFilterParam>;
+  // categoryVar: string; //"c=";
+  // useCategory?: boolean;
+  // category?: string;
+  // glassTypeVar: string; //"g=";
+  // useGlassType?: boolean;
+  // glassType?: string;
+}
