@@ -6,7 +6,8 @@ import { useCocktailsContext } from "../hooks";
 import { getJSonDataUsingFetchNoCache } from "../fetchFunctions";
 
 export function LandingPage(): ReactElement {
-  let { baseUrl, cocktail, updateCocktail } = useCocktailsContext();
+  const { nonAlkoholic, baseUrl, cocktail, updateCocktail } =
+    useCocktailsContext();
 
   const handleUpdateRandomClick: () => void = () => {
     const setRandomCocktail = async () => {
@@ -14,7 +15,9 @@ export function LandingPage(): ReactElement {
       const jsonDrinks: IJSON[] = await getJSonDataUsingFetchNoCache(url);
 
       updateCocktail(
-        jsonDrinks === null ? undefined : jsonToCocktails(jsonDrinks)[0]
+        jsonDrinks === null
+          ? undefined
+          : jsonToCocktails(jsonDrinks, nonAlkoholic)[0]
       );
       console.log("new:", cocktail);
     };

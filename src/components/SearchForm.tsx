@@ -10,7 +10,7 @@ import {
 import { getJSonDataUsingFetch } from "../fetchFunctions";
 
 export function SearchForm(): ReactElement {
-  const { updateCocktails, baseUrl } = useCocktailsContext();
+  const { updateCocktails, nonAlkoholic, baseUrl } = useCocktailsContext();
   const nameRef = useRef<HTMLInputElement>(null);
   const nameCheckRef = useRef<HTMLInputElement>(null);
   const categoryRef = useRef<HTMLInputElement>(null);
@@ -55,7 +55,9 @@ export function SearchForm(): ReactElement {
       const jsonDrinks: IJSON[] = await getJSonDataUsingFetch(url);
 
       updateCocktails(
-        jsonDrinks === null ? [] : simpleJsonToCocktails(jsonDrinks)
+        jsonDrinks === null
+          ? []
+          : simpleJsonToCocktails(jsonDrinks, nonAlkoholic)
       );
     };
 
@@ -80,8 +82,8 @@ export function SearchForm(): ReactElement {
     filterParams.paramArray[1].use = false;
     filterParams.paramArray[1].fieldValue = glassTypeRef.current!.value;
 
-    alcoholicRef.current!.checked = false;
-    alcoholicCheckRef.current!.checked = false;
+    alcoholicRef.current!.checked = !nonAlkoholic;
+    alcoholicCheckRef.current!.checked = nonAlkoholic;
     filterParams.alcoholicFilter!.use = false;
     filterParams.alcoholicFilter!.isAlcohol = false;
     // setFilterParams(filterParams);

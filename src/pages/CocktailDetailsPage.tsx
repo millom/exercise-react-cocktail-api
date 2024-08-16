@@ -7,7 +7,7 @@ import { getJSonDataUsingFetch } from "../fetchFunctions";
 
 export function CocktailDetailsPage(): ReactElement {
   const params = useParams();
-  const { baseUrl } = useCocktailsContext();
+  const { nonAlkoholic, baseUrl } = useCocktailsContext();
   let defaultCocktail: ICocktail | undefined;
   const [cocktail, setCocktail] = useState(defaultCocktail);
 
@@ -17,7 +17,9 @@ export function CocktailDetailsPage(): ReactElement {
       const jsonDrinks: IJSON[] = await getJSonDataUsingFetch(url);
 
       setCocktail(
-        jsonDrinks === null ? undefined : jsonToCocktails(jsonDrinks)[0]
+        jsonDrinks === null
+          ? undefined
+          : jsonToCocktails(jsonDrinks, nonAlkoholic)[0]
       );
       console.log("new:", cocktail);
     };
