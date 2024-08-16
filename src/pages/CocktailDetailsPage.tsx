@@ -1,5 +1,4 @@
 import { ReactElement, useEffect, useState } from "react";
-// import { useCocktailsContext } from "../hooks";
 import { useParams } from "react-router-dom";
 import { ICocktail, IJSON } from "../interfaces";
 import { jsonToCocktails } from "../customFunctions";
@@ -9,11 +8,9 @@ import { getJSonDataUsingFetch } from "../fetchFunctions";
 export function CocktailDetailsPage(): ReactElement {
   const params = useParams();
   const { baseUrl } = useCocktailsContext();
-
   let defaultCocktail: ICocktail | undefined;
   const [cocktail, setCocktail] = useState(defaultCocktail);
-  // const { cocktail } = useCocktailsContext();
-  // console.log(cocktail);
+
   useEffect(() => {
     const setCocktailById = async () => {
       const url: string = `${baseUrl}lookup.php?i=${params.cocktailId}`;
@@ -22,22 +19,7 @@ export function CocktailDetailsPage(): ReactElement {
       setCocktail(
         jsonDrinks === null ? undefined : jsonToCocktails(jsonDrinks)[0]
       );
-      // updateCocktails(jsonDrinks === null ? [] : jsonToCocktails(jsonDrinks));
-      // const response = await fetch(
-      //   `https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=${params.cocktailId}`,
-      //   { cache: "force-cache" }
-      // );
-      // const data = await response.json();
-      // // console.log(data);
-
-      // const cocktailArr: ICocktail[] = jsonToCocktails(data.drinks);
-      // // console.log(cocktailArr);
-
-      // const newCocktail: ICocktail = cocktailArr[0];
-      // // const [newCocktail]: ICocktail = cocktailArr;
-      // setCocktail(newCocktail);
-      // console.log("new:", cocktail);
-      // // updateCocktail(cocktail);
+      console.log("new:", cocktail);
     };
 
     setCocktailById();
