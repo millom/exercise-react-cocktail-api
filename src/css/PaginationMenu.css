@@ -42,6 +42,11 @@
   font-weight: bold;
 }
 
+.paginate-menu li a {
+  height: 100%;
+  width: 100%;
+}
+
 .paginate-menu li.selected {
   background-color: rgb(255, 255, 100);
 }
