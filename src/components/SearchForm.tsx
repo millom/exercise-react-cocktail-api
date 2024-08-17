@@ -31,6 +31,7 @@ export function SearchForm(): ReactElement {
   const defaultSearchParams: IFilterParams = {
     command: "search.php?",
     paramArray: [{ use: true, name: "Name or first letter in name" }],
+    alcoholicFilter: { use: false, name: "Alcoholic", fieldName: "?" },
   };
   const [searchParams, setSearchParams] = useState(defaultSearchParams);
   const [disableFilterParams, setDisableFilterParams] = useState(false);
@@ -44,9 +45,13 @@ export function SearchForm(): ReactElement {
     const updateFetchAndCocktails = async () => {
       // let url: string = baseUrl + "search.php?";
       let url: string = baseUrl; // + "filter.php?";
+      let removeAlkoholic: boolean = nonAlkoholic;
       if (nameCheckRef.current?.checked) {
         console.log("searchParams", searchParams);
         url += getFilterParams(searchParams);
+        removeAlkoholic |=
+          searchParams.alcoholicFilter?.use &&
+          !searchParams.alcoholicFilter?.isAlcohol;
       } else {
         console.log("filterParams", filterParams);
         url += getFilterParams(filterParams);
@@ -57,7 +62,7 @@ export function SearchForm(): ReactElement {
       updateCocktails(
         jsonDrinks === null
           ? []
-          : simpleJsonToCocktails(jsonDrinks, nonAlkoholic)
+          : simpleJsonToCocktails(jsonDrinks, removeAlkoholic)
       );
     };
 
@@ -72,6 +77,8 @@ export function SearchForm(): ReactElement {
     searchParams.paramArray[0].fieldValue = nameRef.current!.value;
     searchParams.paramArray[0].fieldName =
       nameRef.current!.value.length > 1 ? "s" : "f";
+    searchParams.alcoholicFilter!.use = nonAlkoholic;
+    searchParams.alcoholicFilter!.isAlcohol = !nonAlkoholic;
     // setSearchParams(searchParams);
 
     categoryCheckRef.current!.checked = false;
@@ -84,8 +91,8 @@ export function SearchForm(): ReactElement {
 
     alcoholicRef.current!.checked = !nonAlkoholic;
     alcoholicCheckRef.current!.checked = nonAlkoholic;
-    filterParams.alcoholicFilter!.use = false;
-    filterParams.alcoholicFilter!.isAlcohol = false;
+    filterParams.alcoholicFilter!.use = nonAlkoholic;
+    filterParams.alcoholicFilter!.isAlcohol = !nonAlkoholic;
     // setFilterParams(filterParams);
   }, []);
 
@@ -130,7 +137,8 @@ export function SearchForm(): ReactElement {
           // ref={searchNameRef}
           // defaultValue="false"
           onChange={(event) => {
-            filterParams.alcoholicFilter!.use = event.target.checked;
+            filterParams.alcoholicFilter!.use =
+              searchParams.alcoholicFilter!.use = event.target.checked;
             // setFilterParams(filterParams);
           }}
           ref={alcoholicCheckRef}
@@ -142,7 +150,8 @@ export function SearchForm(): ReactElement {
           ref={alcoholicRef}
           // disabled={disableFilterParams}
           onChange={(event) => {
-            filterParams.alcoholicFilter!.isAlcohol = event.target.checked;
+            filterParams.alcoholicFilter!.isAlcohol =
+              searchParams.alcoholicFilter!.isAlcohol = event.target.checked;
             // setFilterParams(filterParams);
           }}
           defaultValue="false"
