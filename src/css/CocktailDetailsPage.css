@@ -9,6 +9,7 @@ p {
   width: 100%;
   /* flex-direction: row; */
   padding-bottom: 2rem;
+  /* position: relative; */
 }
 
 .details-header {
@@ -22,6 +23,7 @@ p {
   padding-bottom: 1rem;
   /* text-decoration: underline; */
   /* height: 80%; */
+  position: relative;
 }
 
 .line-container {

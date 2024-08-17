@@ -4,6 +4,7 @@ import { ICocktail, IJSON } from "../interfaces";
 import { jsonToCocktails } from "../customFunctions";
 import { useCocktailsContext } from "../hooks";
 import { getJSonDataUsingFetch } from "../fetchFunctions";
+import { LikeButton } from "../components";
 
 export function CocktailDetailsPage(): ReactElement {
   const params = useParams();
@@ -29,7 +30,10 @@ export function CocktailDetailsPage(): ReactElement {
 
   return (
     <div className="main-content">
-      <h1 className="details-header">{cocktail?.name}</h1>
+      <h1 className="details-header">
+        {cocktail?.name}
+        <LikeButton />
+      </h1>
       <div className="details-container">
         <article className="details">
           <div className="line-container">
