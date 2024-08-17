@@ -19,7 +19,7 @@ export function Footer(): ReactElement {
           Search
         </NavLink>
         <NavLink
-          to="/"
+          to="/favorites"
           className={({ isActive }) => (isActive ? "link link-active" : "link")}
         >
           Favorites

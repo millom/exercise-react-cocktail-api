@@ -7,6 +7,7 @@ import {
 import {
   CocktailDetailsPage,
   ErrorPage,
+  FavoritesPage,
   LandingPage,
   SearchPage,
 } from "./pages";
@@ -19,6 +20,7 @@ export const router = createBrowserRouter(
       <Route index element={<LandingPage />} />
       <Route path="/search" element={<SearchPage />} />
       <Route path="/details/:cocktailId" element={<CocktailDetailsPage />} />
+      <Route path="/favorites" element={<FavoritesPage />} />
     </Route>
   )
 );
