@@ -34,7 +34,7 @@ export function FavoritesPage(): ReactElement {
   return (
     <>
       <div className="main-content center-content">
-        <h1>Favorites</h1>
+        <h1 className="favorite-header">Favorites</h1>
         <div className="favorite-container">
           {favorites.map((c: ICocktail) => (
             <CocktailCard key={c.id} cocktail={c} />
