@@ -91,6 +91,39 @@ export function CocktailProvider({
   //   return fetchSearch(searchParams);
   // };
 
+  const defaultFavorites: ICocktail[] = [];
+  const [favorites, setFavorites] = useState(defaultFavorites);
+  const defaultFavoritesSet: Set<string> = new Set<string>();
+  const [favoritesSet, setFavoritesSet] = useState(defaultFavoritesSet);
+  // favoritesSet?: Set<string>;
+  const addFavorite: (cocktail: ICocktail) => void = (cocktail) => {
+    if (localStorage.getItem(cocktail.id) !== null) return;
+
+    const favorite: ICocktail = {
+      id: cocktail.id,
+      name: cocktail.name,
+      imgSrc: cocktail.imgSrc,
+    };
+    localStorage.setItem(cocktail.id, JSON.stringify(favorite));
+    favorites.push(favorite);
+    favoritesSet.add(favorite.id);
+  };
+
+  const removeFavorite: (id: string) => void = (id) => {
+    if (localStorage.getItem(id) === null) return;
+
+    localStorage.removeItem(id);
+
+    const newFavorites: ICocktail[] = favorites.filter(
+      (obj: ICocktail) => obj.id !== id
+    );
+    setFavorites(newFavorites);
+
+    favoritesSet.delete(id);
+    setFavoritesSet(favoritesSet);
+  };
+  // removeFavorite?: (cocktail: ICocktail) => void;
+
   const values: ICocktailContext = {
     baseUrl,
     name,
@@ -101,6 +134,10 @@ export function CocktailProvider({
     updateCocktails,
     nonAlkoholic: nonAlkoholic,
     updateNonAlkoholic: updateNonAlkoholic,
+    favorites,
+    favoritesSet,
+    addFavorite,
+    removeFavorite,
   };
 
   return (
