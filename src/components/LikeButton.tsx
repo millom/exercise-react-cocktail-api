@@ -1,9 +1,25 @@
 import { ReactElement } from "react";
+import { useCocktailsContext } from "../hooks";
+import { ICocktail } from "../interfaces";
 
-export function LikeButton(): ReactElement {
+interface ILikeButtonProps {
+  cocktail: ICocktail | undefined;
+}
+
+export function LikeButton({ cocktail }: ILikeButtonProps): ReactElement {
+  const { favoritesSet, addFavorite, removeFavorite } = useCocktailsContext();
+
   return (
     <>
-      <button className="like-button">❤️ Like</button>
+      <button
+        className={
+          cocktail && cocktail.id in favoritesSet!
+            ? "like-button is-like"
+            : "like-button"
+        }
+      >
+        ❤️ {cocktail && cocktail.id in favoritesSet! ? "Unlike" : "Like"}
+      </button>
     </>
   );
 }

@@ -32,7 +32,7 @@ export function CocktailDetailsPage(): ReactElement {
     <div className="main-content">
       <h1 className="details-header">
         {cocktail?.name}
-        <LikeButton />
+        <LikeButton cocktail={cocktail} />
       </h1>
       <div className="details-container">
         <article className="details">
