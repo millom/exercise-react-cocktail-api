@@ -65,6 +65,9 @@ export interface ICocktailContext {
   baseUrl: string;
   nonAlkoholic: boolean;
   updateNonAlkoholic: (nonAlkoholic: boolean) => void;
+  favorites?: ICocktail;
+  addFavorite?: (cocktail: ICocktail) => void;
+  removeFavorite?: (cocktail: ICocktail) => void;
   // handleSearchCocktailsClick: (
   //   event: MouseEvent<HTMLFormElement>,
   //   searchParams: ISearchParams
