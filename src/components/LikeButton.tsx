@@ -11,6 +11,11 @@ export function LikeButton({ cocktail }: ILikeButtonProps): ReactElement {
   const [isLike, setIsLike] = useState(false);
 
   const setFromInLocalStore = () => {
+    console.log(
+      cocktail?.id,
+      "setFromInLocalStore:",
+      cocktail?.id !== undefined ? cocktail!.id : "???"
+    );
     setIsLike(
       localStorage.getItem(
         cocktail?.id !== undefined ? cocktail!.id : "???"
@@ -53,8 +58,10 @@ export function LikeButton({ cocktail }: ILikeButtonProps): ReactElement {
   };
 
   useEffect(() => {
+    console.log("---- Like button Effect ----");
     setFromInLocalStore();
-  }, []);
+    console.log(isLike);
+  }, [cocktail, isLike, setFromInLocalStore]);
 
   return (
     <div className="like-button">

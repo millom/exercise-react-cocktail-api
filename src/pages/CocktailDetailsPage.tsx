@@ -21,8 +21,9 @@ export function CocktailDetailsPage(): ReactElement {
         jsonDrinks === null
           ? undefined
           : jsonToCocktails(jsonDrinks, nonAlkoholic)[0]
+        // jsonToCocktails(jsonDrinks, false)[0]
       );
-      console.log("new:", cocktail);
+      console.log("new:", jsonDrinks, cocktail);
     };
 
     setCocktailById();
