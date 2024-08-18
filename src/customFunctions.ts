@@ -55,6 +55,8 @@ export const jsonToCocktails: (
       if (json.strTags !== null) {
         const tagArr: string[] = json.strTags.split(",");
         for (let i = 0; i < tagArr.length; i++) {
+          if (json.strTags.length == 0) continue;
+
           cocktail.tags?.push(tagArr[i]);
         }
       }
