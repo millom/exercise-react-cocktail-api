@@ -79,7 +79,6 @@ export function SearchForm(): ReactElement {
       nameRef.current!.value.length > 1 ? "s" : "f";
     searchParams.alcoholicFilter!.use = nonAlkoholic;
     searchParams.alcoholicFilter!.isAlcohol = !nonAlkoholic;
-    // setSearchParams(searchParams);
 
     categoryCheckRef.current!.checked = false;
     filterParams.paramArray[0].use = false;
@@ -93,7 +92,6 @@ export function SearchForm(): ReactElement {
     alcoholicCheckRef.current!.checked = nonAlkoholic;
     filterParams.alcoholicFilter!.use = nonAlkoholic;
     filterParams.alcoholicFilter!.isAlcohol = !nonAlkoholic;
-    // setFilterParams(filterParams);
   }, []);
 
   return (
@@ -102,15 +100,11 @@ export function SearchForm(): ReactElement {
         <input
           type="checkbox"
           title="Selected or not"
-          // ref={searchNameRef}
-          // defaultValue=true
           onChange={(event) => {
             searchParams.paramArray[0].use = event.target.checked;
-            // setSearchParams(searchParams);
             setDisableFilterParams(event.target.checked);
           }}
           ref={nameCheckRef}
-          // checked
         />
         <label htmlFor="searchNameId">Name: </label>
         <input
@@ -124,7 +118,6 @@ export function SearchForm(): ReactElement {
             );
             searchParams.paramArray[0].fieldName =
               searchParams.paramArray[0].fieldValue.length > 1 ? "s" : "f";
-            // setSearchParams(searchParams);
           }}
           defaultValue={"margarita"}
         />
@@ -133,13 +126,9 @@ export function SearchForm(): ReactElement {
         <input
           type="checkbox"
           title="Selected or not"
-          // disabled={disableFilterParams}
-          // ref={searchNameRef}
-          // defaultValue="false"
           onChange={(event) => {
             filterParams.alcoholicFilter!.use =
               searchParams.alcoholicFilter!.use = event.target.checked;
-            // setFilterParams(filterParams);
           }}
           ref={alcoholicCheckRef}
         />
@@ -148,11 +137,9 @@ export function SearchForm(): ReactElement {
           id="searchGlassTypeId"
           type="checkbox"
           ref={alcoholicRef}
-          // disabled={disableFilterParams}
           onChange={(event) => {
             filterParams.alcoholicFilter!.isAlcohol =
               searchParams.alcoholicFilter!.isAlcohol = event.target.checked;
-            // setFilterParams(filterParams);
           }}
           defaultValue="false"
         />
@@ -163,12 +150,9 @@ export function SearchForm(): ReactElement {
           title="Selected or not"
           ref={categoryCheckRef}
           disabled={disableFilterParams}
-          // defaultValue="false"
           onChange={(event) => {
             filterParams.paramArray[0].use = event.target.checked;
-            // setFilterParams(filterParams);
           }}
-          // ref={categoryCheckRef}
         />
         <label htmlFor="searchCategoryId">Category: </label>
         <input
@@ -181,7 +165,6 @@ export function SearchForm(): ReactElement {
               " ",
               "_"
             );
-            // setFilterParams(filterParams);
           }}
           defaultValue={"cocktail"}
         />
@@ -191,11 +174,8 @@ export function SearchForm(): ReactElement {
           type="checkbox"
           title="Selected or not"
           disabled={disableFilterParams}
-          // ref={searchNameRef}
-          // defaultValue="false"
           onChange={(event) => {
             filterParams.paramArray[1].use = event.target.checked;
-            // setFilterParams(filterParams);
           }}
           ref={glassTypeCheckRef}
         />
@@ -210,7 +190,6 @@ export function SearchForm(): ReactElement {
               " ",
               "_"
             );
-            // setFilterParams(filterParams);
           }}
           defaultValue={"Cocktail glass"}
         />
