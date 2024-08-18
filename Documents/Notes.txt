@@ -21,3 +21,24 @@ https://www.bing.com/videos/riverview/relatedvideo?q=react%20pagination&mid=C04B
 
 // Maybe good
 https://medium.com/@akashjha9041/building-pagination-in-react-with-react-paginate-f82f44004484
+
+// TODO
+  // Favorites
+    Button on detail page
+      Add, if not favorite
+      Remove if favorite
+    Page with favorites
+      Contain cards with favorites
+        Name
+        Image
+        Link to details on click
+
+  // Error handling
+    Throw exceptions on fetch error
+    Error when trying to look at alkoholic when not allowed
+
+  // Loading
+    Try to use loading in router
+
+  // Try to extract some parts to smaller components
+    In search it should be simplified
