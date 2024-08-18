@@ -52,7 +52,7 @@ export interface ICocktail {
   category?: string;
   isAlcoholic?: boolean;
   ingredients?: Array<string>;
-  mesurements?: Array<string>;
+  measurements?: Array<string>;
 }
 
 export interface ICocktailContext {

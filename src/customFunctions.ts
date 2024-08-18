@@ -50,7 +50,7 @@ export const jsonToCocktails: (
         imgSrc: json.strDrinkThumb,
         tags: [],
         ingredients: [],
-        mesurements: [],
+        measurements: [],
       };
       if (json.strTags !== null) {
         const tagArr: string[] = json.strTags.split(",");
@@ -104,49 +104,49 @@ export const jsonToCocktails: (
         cocktail.ingredients?.push(json["strIngredient15"]);
       }
       if (json["strMeasure1"] !== null) {
-        cocktail.mesurements?.push(json["strMeasure1"]);
+        cocktail.measurements?.push(json["strMeasure1"]);
       }
       if (json["strMeasure2"] !== null) {
-        cocktail.mesurements?.push(json["strMeasure2"]);
+        cocktail.measurements?.push(json["strMeasure2"]);
       }
       if (json["strMeasure3"] !== null) {
-        cocktail.mesurements?.push(json["strMeasure3"]);
+        cocktail.measurements?.push(json["strMeasure3"]);
       }
       if (json["strMeasure4"] !== null) {
-        cocktail.mesurements?.push(json["strMeasure4"]);
+        cocktail.measurements?.push(json["strMeasure4"]);
       }
       if (json["strMeasure5"] !== null) {
-        cocktail.mesurements?.push(json["strMeasure5"]);
+        cocktail.measurements?.push(json["strMeasure5"]);
       }
       if (json["strMeasure6"] !== null) {
-        cocktail.mesurements?.push(json["strMeasure6"]);
+        cocktail.measurements?.push(json["strMeasure6"]);
       }
       if (json["strMeasure7"] !== null) {
-        cocktail.mesurements?.push(json["strMeasure7"]);
+        cocktail.measurements?.push(json["strMeasure7"]);
       }
       if (json["strMeasure8"] !== null) {
-        cocktail.mesurements?.push(json["strMeasure8"]);
+        cocktail.measurements?.push(json["strMeasure8"]);
       }
       if (json["strMeasure9"] !== null) {
-        cocktail.mesurements?.push(json["strMeasure9"]);
+        cocktail.measurements?.push(json["strMeasure9"]);
       }
       if (json["strMeasure10"] !== null) {
-        cocktail.mesurements?.push(json["strMeasure10"]);
+        cocktail.measurements?.push(json["strMeasure10"]);
       }
       if (json["strMeasure11"] !== null) {
-        cocktail.mesurements?.push(json["strMeasure11"]);
+        cocktail.measurements?.push(json["strMeasure11"]);
       }
       if (json["strMeasure12"] !== null) {
-        cocktail.mesurements?.push(json["strMeasure12"]);
+        cocktail.measurements?.push(json["strMeasure12"]);
       }
       if (json["strMeasure13"] !== null) {
-        cocktail.mesurements?.push(json["strMeasure13"]);
+        cocktail.measurements?.push(json["strMeasure13"]);
       }
       if (json["strMeasure14"] !== null) {
-        cocktail.mesurements?.push(json["strMeasure14"]);
+        cocktail.measurements?.push(json["strMeasure14"]);
       }
       if (json["strMeasure15"] !== null) {
-        cocktail.mesurements?.push(json["strMeasure15"]);
+        cocktail.measurements?.push(json["strMeasure15"]);
       }
       return cocktail;
     });
