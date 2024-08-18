@@ -97,8 +97,12 @@ export function CocktailProvider({
   const [favoritesSet, setFavoritesSet] = useState(defaultFavoritesSet);
   // favoritesSet?: Set<string>;
   const addFavorite: (cocktail: ICocktail) => void = (cocktail) => {
-    if (localStorage.getItem(cocktail.id) !== null) return;
+    console.log("Add", localStorage.getItem(cocktail.id));
+    console.log("localStorage", localStorage);
+    // localStorage.removeItem(cocktail.id);
 
+    if (localStorage.getItem(cocktail.id) !== null) return;
+    console.log("addFavorite: pased");
     const favorite: ICocktail = {
       id: cocktail.id,
       name: cocktail.name,
@@ -106,18 +110,27 @@ export function CocktailProvider({
     };
     localStorage.setItem(cocktail.id, JSON.stringify(favorite));
     favorites.push(favorite);
+    // const newFavorites = [...favorites];
+    setFavorites([...favorites]);
     favoritesSet.add(favorite.id);
+    setFavoritesSet(favoritesSet);
+    console.log("favorites", favorites);
+    console.log("favoritesSet", favoritesSet);
   };
 
   const removeFavorite: (id: string) => void = (id) => {
+    console.log("Remove 1", localStorage, localStorage.getItem(id));
     if (localStorage.getItem(id) === null) return;
-
+    console.log("localStorage", localStorage);
     localStorage.removeItem(id);
+    // console.log("localStorage", localStorage);
 
+    console.log("favorites", favorites);
     const newFavorites: ICocktail[] = favorites.filter(
       (obj: ICocktail) => obj.id !== id
     );
     setFavorites(newFavorites);
+    console.log("newFavorites", newFavorites);
 
     favoritesSet.delete(id);
     setFavoritesSet(favoritesSet);

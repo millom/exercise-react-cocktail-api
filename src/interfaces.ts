@@ -68,7 +68,7 @@ export interface ICocktailContext {
   favorites?: ICocktail[];
   favoritesSet?: Set<string>;
   addFavorite?: (cocktail: ICocktail) => void;
-  removeFavorite?: (cocktail: ICocktail) => void;
+  removeFavorite?: (id: string) => void;
   // handleSearchCocktailsClick: (
   //   event: MouseEvent<HTMLFormElement>,
   //   searchParams: ISearchParams
