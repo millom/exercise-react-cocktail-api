@@ -48,7 +48,8 @@ p {
   background-color: #1d000d;
   /* display: inline; */
   height: auto;
-  width: max-content;
+  max-width: 20rem;
+  width: ;
   display: flex;
   align-items: start;
   flex-wrap: wrap;
