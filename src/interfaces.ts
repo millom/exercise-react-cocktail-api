@@ -130,14 +130,4 @@ export interface ISearchFormUiParams {
   category: IFormUiParam;
   ingredients: IFormUiParam;
   glassTypes: IFormUiParam;
-  // useName: boolean;
-  // name: string;
-  // useIsAlkoholic: boolean;
-  // isAlkoholic: boolean;
-  // useCategory: boolean;
-  // category: string;
-  // useIngredients: boolean;
-  // ingredients: string;
-  // useGlassType: boolean;
-  // glassType: string;
 }

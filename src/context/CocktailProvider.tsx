@@ -3,14 +3,12 @@ import {
   ICocktail,
   ICocktailContext,
   ISearchFormUiParams,
-  ISearchParams,
 } from "../interfaces";
 
 interface ICocktailProviderProps {
   children: ReactNode;
 }
 
-// export const CocktailContext = createContext<ICotailContext | undefined>(undefined);
 export const CocktailContext = createContext<ICocktailContext>(
   {} as ICocktailContext
 );
@@ -57,19 +55,8 @@ export function CocktailProvider({
       paramName: "i",
       valueStr: "lime",
     },
-    // useName: true,
-    // name: "margarita",
-    // useIsAlkoholic: false,
-    // isAlkoholic: false,
-    // useCategory: false,
-    // category: "cocktail",
-    // useIngredients: false,
-    // ingredients: "lime",
-    // useGlassType: false,
-    // glassType: "Cocktail glass",
   };
 
-  // };
   const [searchFormUiParams, setsSarchFormUiParams] = useState(
     defaultSearchFormUiParams
   );
@@ -100,7 +87,6 @@ export function CocktailProvider({
   const addFavorite: (cocktail: ICocktail) => void = (cocktail) => {
     console.log("Add", localStorage.getItem(cocktail.id));
     console.log("localStorage", localStorage);
-    // localStorage.removeItem(cocktail.id);
 
     if (localStorage.getItem(cocktail.id) !== null) return;
     console.log("addFavorite: pased");
