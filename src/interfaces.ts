@@ -69,6 +69,8 @@ export interface ICocktailContext {
   favoritesSet?: Set<string>;
   addFavorite?: (cocktail: ICocktail) => void;
   removeFavorite?: (id: string) => void;
+  searchFormUiParams: ISearchFormUiParams;
+  updateSearchFormUiParams: (param: ISearchFormUiParams) => void;
 }
 
 export interface ISearchParams {
@@ -91,4 +93,28 @@ export interface IFilterParams {
   command: string;
   paramArray: Array<IFilterParam>;
   alcoholicFilter?: IFilterParam;
+}
+
+interface IFormUiParam {
+  use: boolean;
+  valueStr?: string;
+  valueBool?: boolean;
+}
+
+export interface ISearchFormUiParams {
+  name: IFormUiParam;
+  isAlkoholic: IFormUiParam;
+  category: IFormUiParam;
+  ingredients: IFormUiParam;
+  glassTypes: IFormUiParam;
+  // useName: boolean;
+  // name: string;
+  // useIsAlkoholic: boolean;
+  // isAlkoholic: boolean;
+  // useCategory: boolean;
+  // category: string;
+  // useIngredients: boolean;
+  // ingredients: string;
+  // useGlassType: boolean;
+  // glassType: string;
 }

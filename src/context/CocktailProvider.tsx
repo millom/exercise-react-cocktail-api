@@ -1,5 +1,10 @@
 import { createContext, ReactElement, ReactNode, useState } from "react";
-import { ICocktail, ICocktailContext } from "../interfaces";
+import {
+  ICocktail,
+  ICocktailContext,
+  ISearchFormUiParams,
+  ISearchParams,
+} from "../interfaces";
 
 interface ICocktailProviderProps {
   children: ReactNode;
@@ -20,6 +25,43 @@ export function CocktailProvider({
   const defaultCocktails: ICocktail[] = [];
   const [cocktails, setCocktails] = useState(defaultCocktails);
   const [nonAlkoholic, setOnlyNonAlkoholic] = useState(false);
+  const defaultSearchFormUiParams: ISearchFormUiParams = {
+    name: {
+      use: true,
+      valueStr: "margarita",
+    },
+    isAlkoholic: {
+      use: false,
+      valueBool: false,
+    },
+    category: {
+      use: false,
+      valueStr: "cocktail",
+    },
+    glassTypes: {
+      use: false,
+      valueStr: "Cocktail glass",
+    },
+    ingredients: {
+      use: false,
+      valueStr: "lime",
+    },
+    // useName: true,
+    // name: "margarita",
+    // useIsAlkoholic: false,
+    // isAlkoholic: false,
+    // useCategory: false,
+    // category: "cocktail",
+    // useIngredients: false,
+    // ingredients: "lime",
+    // useGlassType: false,
+    // glassType: "Cocktail glass",
+  };
+
+  // };
+  const [searchFormUiParams, setsSarchFormUiParams] = useState(
+    defaultSearchFormUiParams
+  );
 
   const updateCocktail: (c: ICocktail | undefined) => void = (
     c: ICocktail | undefined
@@ -81,6 +123,12 @@ export function CocktailProvider({
     setFavoritesSet(favoritesSet);
   };
 
+  const updateSearchFormUiParams: (param: ISearchFormUiParams) => void = (
+    param
+  ) => {
+    setsSarchFormUiParams(param);
+  };
+
   const values: ICocktailContext = {
     baseUrl,
     name,
@@ -95,6 +143,8 @@ export function CocktailProvider({
     favoritesSet,
     addFavorite,
     removeFavorite,
+    searchFormUiParams,
+    updateSearchFormUiParams,
   };
 
   return (

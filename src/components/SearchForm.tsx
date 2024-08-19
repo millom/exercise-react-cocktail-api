@@ -10,7 +10,13 @@ import { getJSonDataUsingFetch } from "../fetchFunctions";
 import { AlkoholicType } from "../enums";
 
 export function SearchForm(): ReactElement {
-  const { updateCocktails, nonAlkoholic, baseUrl } = useCocktailsContext();
+  const {
+    searchFormUiParams,
+    updateSearchFormUiParams,
+    updateCocktails,
+    nonAlkoholic,
+    baseUrl,
+  } = useCocktailsContext();
   const nameRef = useRef<HTMLInputElement>(null);
   const nameCheckRef = useRef<HTMLInputElement>(null);
   const categoryRef = useRef<HTMLInputElement>(null);
@@ -114,29 +120,35 @@ export function SearchForm(): ReactElement {
   useEffect(() => {
     // Use name as default in search
     // setDisableFilterParams(true);
-
-    nameCheckRef.current!.checked = true;
-    searchParams.paramArray[0].use = true;
-    searchParams.paramArray[0].fieldValue = nameRef.current!.value;
-    searchParams.paramArray[0].fieldName =
-      nameRef.current!.value.length > 1 ? "s" : "f";
-    searchParams.alcoholicFilter!.use = nonAlkoholic;
-    searchParams.alcoholicFilter!.isAlcohol = !nonAlkoholic;
-    setSearchParams(searchParams);
-
-    categoryCheckRef.current!.checked = false;
-    filterParams.paramArray[0].use = false;
-    filterParams.paramArray[0].fieldValue = categoryRef.current!.value;
-
-    glassTypeCheckRef.current!.checked = false;
-    filterParams.paramArray[1].use = false;
-    filterParams.paramArray[1].fieldValue = glassTypeRef.current!.value;
-
-    alcoholicRef.current!.checked = !nonAlkoholic;
-    alcoholicCheckRef.current!.checked = nonAlkoholic;
-    filterParams.alcoholicFilter!.use = nonAlkoholic;
-    filterParams.alcoholicFilter!.isAlcohol = !nonAlkoholic;
-    setFilterParams(filterParams);
+    // nameCheckRef.current!.checked = true;
+    // searchParams.paramArray[0].use = true;
+    // searchParams.paramArray[0].fieldValue = nameRef.current!.value;
+    // searchParams.paramArray[0].fieldName =
+    //   nameRef.current!.value.length > 1 ? "s" : "f";
+    // searchParams.alcoholicFilter!.use = nonAlkoholic;
+    // searchParams.alcoholicFilter!.isAlcohol = !nonAlkoholic;
+    // setSearchParams(searchParams);
+    // categoryCheckRef.current!.checked = false;
+    // filterParams.paramArray[0].use = false;
+    // filterParams.paramArray[0].fieldValue = categoryRef.current!.value;
+    // glassTypeCheckRef.current!.checked = false;
+    // filterParams.paramArray[1].use = false;
+    // filterParams.paramArray[1].fieldValue = glassTypeRef.current!.value;
+    // alcoholicRef.current!.checked = !nonAlkoholic;
+    // alcoholicCheckRef.current!.checked = nonAlkoholic;
+    // filterParams.alcoholicFilter!.use = nonAlkoholic;
+    // filterParams.alcoholicFilter!.isAlcohol = !nonAlkoholic;
+    // setFilterParams(filterParams);
+    nameCheckRef.current!.checked = searchFormUiParams.name.use;
+    nameRef.current!.value = searchFormUiParams.name.valueStr as string;
+    alcoholicCheckRef.current!.checked = searchFormUiParams.isAlkoholic.use;
+    alcoholicRef.current!.checked = searchFormUiParams.isAlkoholic
+      .valueBool as boolean;
+    categoryCheckRef.current!.checked = searchFormUiParams.category.use;
+    categoryRef.current!.value = searchFormUiParams.category.valueStr as string;
+    glassTypeCheckRef.current!.checked = searchFormUiParams.glassTypes.use;
+    glassTypeRef.current!.value = searchFormUiParams.glassTypes
+      .valueStr as string;
   }, []);
 
   return (
@@ -148,6 +160,8 @@ export function SearchForm(): ReactElement {
           onChange={(event) => {
             searchParams.paramArray[0].use = event.target.checked;
             setDisableFilterParams(event.target.checked);
+            searchFormUiParams.name.use = event.target.checked;
+            updateSearchFormUiParams(searchFormUiParams);
           }}
           ref={nameCheckRef}
         />
@@ -163,8 +177,10 @@ export function SearchForm(): ReactElement {
             );
             searchParams.paramArray[0].fieldName =
               searchParams.paramArray[0].fieldValue.length > 1 ? "s" : "f";
+            searchFormUiParams.name.valueStr = event.target.value;
+            updateSearchFormUiParams(searchFormUiParams);
           }}
-          defaultValue={"margarita"}
+          // defaultValue={"margarita"}
         />
       </div>
       <div>
@@ -174,6 +190,8 @@ export function SearchForm(): ReactElement {
           onChange={(event) => {
             filterParams.alcoholicFilter!.use =
               searchParams.alcoholicFilter!.use = event.target.checked;
+            searchFormUiParams.isAlkoholic.use = event.target.checked;
+            updateSearchFormUiParams(searchFormUiParams);
           }}
           ref={alcoholicCheckRef}
         />
@@ -185,8 +203,10 @@ export function SearchForm(): ReactElement {
           onChange={(event) => {
             filterParams.alcoholicFilter!.isAlcohol =
               searchParams.alcoholicFilter!.isAlcohol = event.target.checked;
+            searchFormUiParams.isAlkoholic.valueBool = event.target.checked;
+            updateSearchFormUiParams(searchFormUiParams);
           }}
-          defaultValue="false"
+          // defaultValue="false"
         />
       </div>
       <div className={disableFilterParams ? "filter-param-disabled" : ""}>
@@ -197,6 +217,8 @@ export function SearchForm(): ReactElement {
           disabled={disableFilterParams}
           onChange={(event) => {
             filterParams.paramArray[0].use = event.target.checked;
+            searchFormUiParams.category.use = event.target.checked;
+            updateSearchFormUiParams(searchFormUiParams);
           }}
         />
         <label htmlFor="searchCategoryId">Category: </label>
@@ -210,8 +232,10 @@ export function SearchForm(): ReactElement {
               " ",
               "_"
             );
+            searchFormUiParams.category.valueStr = event.target.value;
+            updateSearchFormUiParams(searchFormUiParams);
           }}
-          defaultValue={"cocktail"}
+          // defaultValue={"cocktail"}
         />
       </div>
       <div className={disableFilterParams ? "filter-param-disabled" : ""}>
@@ -221,6 +245,8 @@ export function SearchForm(): ReactElement {
           disabled={disableFilterParams}
           onChange={(event) => {
             filterParams.paramArray[1].use = event.target.checked;
+            searchFormUiParams.glassTypes.use = event.target.checked;
+            updateSearchFormUiParams(searchFormUiParams);
           }}
           ref={glassTypeCheckRef}
         />
@@ -235,8 +261,10 @@ export function SearchForm(): ReactElement {
               " ",
               "_"
             );
+            searchFormUiParams.glassTypes.valueStr = event.target.value;
+            updateSearchFormUiParams(searchFormUiParams);
           }}
-          defaultValue={"Cocktail glass"}
+          // defaultValue={"Cocktail glass"}
         />
       </div>
       <button type="submit">Search</button>
