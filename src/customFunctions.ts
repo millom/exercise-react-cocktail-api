@@ -1,19 +1,14 @@
-import {
-  ICocktail,
-  IFilterParams,
-  IJSON,
-  ISearchFormUiParams,
-} from "./interfaces";
-import { AlkoholicType } from "./enums";
+import { ICocktail, IJSON, ISearchFormUiParams } from "./interfaces";
+import { AlcoholicType } from "./enums";
 
 export const jsonToCocktails: (
   drinks: IJSON[],
-  nonAlkoholic: boolean
-) => ICocktail[] = (drinks: IJSON[], nonAlkoholic: boolean) => {
+  nonAlcoholic: boolean
+) => ICocktail[] = (drinks: IJSON[], nonAlcoholic: boolean) => {
   return drinks
     .filter((json) => {
-      if (!nonAlkoholic) return true;
-      return json.strAlcoholic === "Non_Alkoholic";
+      if (!nonAlcoholic) return true;
+      return json.strAlcoholic === "Non_Alcoholic";
     })
     .map((json: IJSON) => {
       console.log(typeof json, json);
@@ -226,42 +221,14 @@ export const jsonToCocktails: (
 
 export const simpleJsonToCocktails: (
   drinks: IJSON[],
-  alkoholicType: AlkoholicType
-) => ICocktail[] = (drinks, alkoholicType) => {
-  return (
-    drinks
-      // .filter((json) => {
-      //   // if (!alkoholicType) return true;
-      //   console.log(json.strAlcoholic);
-      //   console.log(json.strDrink);
-      //   console.log(json.idDrink);
-      //   console.log(json.strAlcoholic);
-      //   console.log(
-      //     alkoholicType,
-      //     json.strAlcoholic,
-      //     json.strAlcoholic!.toLowerCase() === "non alcoholic"
-      //     // !nonAlkoholic && json.strAlcoholic === "Non_Alkoholic"
-      //   );
-      //   if (alkoholicType == AlkoholicType.NON_ALKOHOLIC) {
-      //     return (
-      //       json.strAlcoholic!.toLowerCase() === "non alcoholic" ||
-      //       json.strAlcoholic!.toLowerCase() === "optional alcohol"
-      //     );
-      //   } else if (alkoholicType == AlkoholicType.ALKOHOLIC) {
-      //     return json.strAlcoholic!.toLowerCase() === "alcoholic";
-      //     // Cont care, show all
-      //   } else {
-      //     return true;
-      //   }
-      //   // return json.strAlcoholic === "Non_Alkoholic";
-      // })
-      .map((json: IJSON) => {
-        return {
-          id: json.idDrink,
-          name: json.strDrink,
-        };
-      })
-  );
+  alcoholicType: AlcoholicType
+) => ICocktail[] = (drinks, alcoholicType) => {
+  return drinks.map((json: IJSON) => {
+    return {
+      id: json.idDrink,
+      name: json.strDrink,
+    };
+  });
 };
 
 export const getSearchParams: (uiParams: ISearchFormUiParams) => string = (

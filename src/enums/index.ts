@@ -1,1 +1,1 @@
-export * from "./AlkloholicType";
+export * from "./AlcoholicType";

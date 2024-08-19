@@ -8,7 +8,7 @@ import { LikeButton } from "../components";
 
 export function CocktailDetailsPage(): ReactElement {
   const params = useParams();
-  const { nonAlcoholic: nonAlkoholic, baseUrl } = useCocktailsContext();
+  const { nonAlcoholic: nonAlcoholic, baseUrl } = useCocktailsContext();
   let defaultCocktail: ICocktail | undefined;
   const [cocktail, setCocktail] = useState(defaultCocktail);
 
@@ -18,18 +18,14 @@ export function CocktailDetailsPage(): ReactElement {
       const jsonDrinks: IJSON[] = await getJSonDataUsingFetch(url);
 
       setCocktail(
-        jsonDrinks === null
-          ? undefined
-          : // : jsonToCocktails(jsonDrinks, nonAlkoholic)[0]
-            jsonToCocktails(jsonDrinks, false)[0]
-        // jsonToCocktails(jsonDrinks, false)[0]
+        jsonDrinks === null ? undefined : jsonToCocktails(jsonDrinks, false)[0]
       );
       console.log(
         "CocktailDetailsPage Effect:",
         url,
         jsonDrinks,
         cocktail,
-        nonAlkoholic
+        nonAlcoholic
       );
     };
 

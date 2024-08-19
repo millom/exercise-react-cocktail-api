@@ -31,7 +31,7 @@
   background-size: cover;
 }
 
-.non-alkoholic-container {
+.non-alcoholic-container {
   display: flex;
   justify-items: left;
   gap: 0.4rem;
@@ -44,6 +44,6 @@
   color: orange;
 }
 
-.non-alkoholic-checkbox {
+.non-alcoholic-checkbox {
   color: orange;
 }

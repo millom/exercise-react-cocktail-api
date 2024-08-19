@@ -7,7 +7,7 @@ import { getJSonDataUsingFetchNoCache } from "../fetchFunctions";
 
 export function LandingPage(): ReactElement {
   const {
-    nonAlcoholic: nonAlkoholic,
+    nonAlcoholic: nonAlcoholic,
     baseUrl,
     cocktail,
     updateCocktail,
@@ -21,7 +21,7 @@ export function LandingPage(): ReactElement {
       updateCocktail(
         jsonDrinks === null
           ? undefined
-          : jsonToCocktails(jsonDrinks, nonAlkoholic)[0]
+          : jsonToCocktails(jsonDrinks, nonAlcoholic)[0]
       );
       console.log("new:", cocktail);
     };

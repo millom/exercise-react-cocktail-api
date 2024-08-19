@@ -7,7 +7,7 @@ import {
   getSearchParams,
 } from "../customFunctions";
 import { getJSonDataUsingFetch } from "../fetchFunctions";
-import { AlkoholicType } from "../enums";
+import { AlcoholicType } from "../enums";
 
 export function SearchForm(): ReactElement {
   const {
@@ -48,24 +48,24 @@ export function SearchForm(): ReactElement {
     event.preventDefault();
     console.log("handleSearchCocktailsClick");
 
-    const decideHowToHandleAlkoholic: () => AlkoholicType = () => {
+    const decideHowToHandleAlkoholic: () => AlcoholicType = () => {
       // Only show non Alkoholic, is set global in header
       // if (nonAlkoholic) {
       if (searchFormUiParams.onlyNonAlcoholicGlobal) {
-        return AlkoholicType.NON_ALKOHOLIC;
+        return AlcoholicType.NON_ALKOHOLIC;
       }
 
       // Alkoholic is not selected in search -> Don't care
       // if (!alcoholicCheckRef.current!.checked) {
       if (!searchFormUiParams.isAlcoholic.use) {
-        return AlkoholicType.DONT_CARE;
+        return AlcoholicType.DONT_CARE;
       }
 
       // Alkoholix is set in search and must be handled
       // return alcoholicRef.current!.checked
       return searchFormUiParams.isAlcoholic.valueBool
-        ? AlkoholicType.ALKOHOLIC
-        : AlkoholicType.NON_ALKOHOLIC;
+        ? AlcoholicType.ALCOHOLIC
+        : AlcoholicType.NON_ALKOHOLIC;
     };
 
     // const updateFetchAndCocktails = async () => {
@@ -129,7 +129,7 @@ export function SearchForm(): ReactElement {
       let url: string = baseUrl; // + searchFormUiParams.searchPhpFileName;
       url += getSearchParams(searchFormUiParams);
       console.log("fetchSearchAndUpdateData", url);
-      const showAlkoholicType: AlkoholicType = decideHowToHandleAlkoholic();
+      const showAlkoholicType: AlcoholicType = decideHowToHandleAlkoholic();
       const jsonDrinks: IJSON[] = await getJSonDataUsingFetch(url);
       updateCocktails(
         jsonDrinks === null || jsonDrinks === undefined
@@ -142,7 +142,7 @@ export function SearchForm(): ReactElement {
       let url: string = baseUrl; // + searchFormUiParams.filterPhpFileName;
       url += getFilterParams(searchFormUiParams);
       console.log("fetchFilterhAndUpdateData", url);
-      const showAlkoholicType: AlkoholicType = decideHowToHandleAlkoholic();
+      const showAlkoholicType: AlcoholicType = decideHowToHandleAlkoholic();
       const jsonDrinks: IJSON[] = await getJSonDataUsingFetch(url);
       updateCocktails(
         jsonDrinks === null || jsonDrinks === undefined
