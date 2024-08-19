@@ -1,11 +1,4 @@
-import {
-  Children,
-  createContext,
-  ReactElement,
-  ReactNode,
-  useEffect,
-  useState,
-} from "react";
+import { createContext, ReactElement, ReactNode, useState } from "react";
 import { ICocktail, ICocktailContext } from "../interfaces";
 
 interface ICocktailProviderProps {
@@ -28,11 +21,6 @@ export function CocktailProvider({
   const [cocktails, setCocktails] = useState(defaultCocktails);
   const [nonAlkoholic, setOnlyNonAlkoholic] = useState(false);
 
-  // useEffect(() => {
-  //   console.log("Provider:", cocktail);
-  //   setCocktail(cocktail);
-  // }, [cocktail]);
-
   const updateCocktail: (c: ICocktail | undefined) => void = (
     c: ICocktail | undefined
   ) => {
@@ -49,53 +37,11 @@ export function CocktailProvider({
     setOnlyNonAlkoholic(nonAlkoholic);
   };
 
-  // const handleSearchCocktailsClick: (
-  //   event: MouseEvent<HTMLFormElement>,
-  //   searchParams: ISearchParams,
-  //   ul: HTMLUListElement
-  // ) => void = (event, searchParams, ul) => {
-  //   event.preventDefault();
-  //   console.log("handleSearchCocktailsClick");
-  //   console.log(searchParams);
-
-  //   // const ul: HTMLUListElement = document.querySelector(".paginate-menu")!;
-  //   sendSetSelectedEvent(ul);
-
-  //   // const updateCocktailList = async (searchParams: ISearchParams) => {
-  //   const fetchSearch = async (searchParams: ISearchParams) => {
-  //     const response = await fetch(
-  //       `https://www.thecocktaildb.com/api/json/v1/1/search.php?s=${
-  //         // searchStringRef.current!.value
-  //         searchParams.name
-  //       }`,
-  //       { cache: "force-cache" }
-  //     );
-  //     // const data = response.json();
-  //     return response.json();
-  //   }
-  //   // // const newCocktailList: ICocktail[] = jsonToCocktail(data.drinks);
-  //   // const newCocktailList: ICocktail[] = jsonToCocktail(data.drinks);
-  //   // console.log("data:", data, data.drinks);
-
-  //   //   if (data?.drinks === null) {
-  //   //     setCocktailList([]);
-  //   //     setPageCount(1);
-  //   //     return;
-  //   //   }
-
-  //   //   setCocktailList(newCocktailList);
-  //   //   setPageCount(Math.ceil(newCocktailList.length / searchItemsPerPage));
-  //   //   console.log(pageCount);
-  //   // };
-
-  //   return fetchSearch(searchParams);
-  // };
-
   const defaultFavorites: ICocktail[] = [];
   const [favorites, setFavorites] = useState(defaultFavorites);
   const defaultFavoritesSet: Set<string> = new Set<string>();
   const [favoritesSet, setFavoritesSet] = useState(defaultFavoritesSet);
-  // favoritesSet?: Set<string>;
+
   const addFavorite: (cocktail: ICocktail) => void = (cocktail) => {
     console.log("Add", localStorage.getItem(cocktail.id));
     console.log("localStorage", localStorage);
@@ -110,7 +56,7 @@ export function CocktailProvider({
     };
     localStorage.setItem(cocktail.id, JSON.stringify(favorite));
     favorites.push(favorite);
-    // const newFavorites = [...favorites];
+
     setFavorites([...favorites]);
     favoritesSet.add(favorite.id);
     setFavoritesSet(favoritesSet);
@@ -123,7 +69,6 @@ export function CocktailProvider({
     if (localStorage.getItem(id) === null) return;
     console.log("localStorage", localStorage);
     localStorage.removeItem(id);
-    // console.log("localStorage", localStorage);
 
     console.log("favorites", favorites);
     const newFavorites: ICocktail[] = favorites.filter(
@@ -135,7 +80,6 @@ export function CocktailProvider({
     favoritesSet.delete(id);
     setFavoritesSet(favoritesSet);
   };
-  // removeFavorite?: (cocktail: ICocktail) => void;
 
   const values: ICocktailContext = {
     baseUrl,

@@ -1,35 +1,5 @@
 import { ICocktail, IFilterParams, IJSON } from "./interfaces";
 
-// const mapJsonToStringJSon: (jsonArr: IJSON[]) => IJSON[] = (jsonArr) => {
-//   return jsonArr.map((json: IJSON) => {
-//     const jsonStrObj: IJSON = {
-//       idDrink: json.idDrink,
-//       strDrink: json.strDrink,
-//       strAlcoholic: json.strAlcoholic,
-//       strTags: json.strTags,
-//       strGlass: json.strGlass,
-//       strDrinkThumb: json.strDrinkThumb,
-//       strCategory: json.strCategory,
-//       strIngredient1: json.strIngredient1 !== null ? json.strIngredient1 : "",
-//       strIngredient2: json.strIngredient2 !== null ? json.strIngredient1 : "",
-//       strIngredient3: json.strIngredient3 !== null ? json.strIngredient1 : "",
-//       strIngredient4: json.strIngredient4 !== null ? json.strIngredient1 : "",
-//       strIngredient5: json.strIngredient5 !== null ? json.strIngredient1 : "",
-//       strIngredient6: json.strIngredient6 !== null ? json.strIngredient1 : "",
-//       strIngredient7: json.strIngredient7 !== null ? json.strIngredient1 : "",
-//       strIngredient8: json.strIngredient8 !== null ? json.strIngredient1 : "",
-//       strIngredient9: json.strIngredient9 !== null ? json.strIngredient1 : "",
-//       strIngredient10: json.strIngredient10 !== null ? json.strIngredient1 : "",
-//       strIngredient11: json.strIngredient11 !== null ? json.strIngredient1 : "",
-//       strIngredient12: json.strIngredient12 !== null ? json.strIngredient1 : "",
-//       strIngredient13: json.strIngredient13 !== null ? json.strIngredient1 : "",
-//       strIngredient14: json.strIngredient14 !== null ? json.strIngredient1 : "",
-//       strIngredient15: json.strIngredient15 !== null ? json.strIngredient1 : "",
-//     };
-//     return jsonStrObj;
-//   });
-// };
-
 export const jsonToCocktails: (
   drinks: IJSON[],
   nonAlkoholic: boolean
@@ -164,7 +134,6 @@ export const simpleJsonToCocktails: (
       return json.strAlcoholic === "Non_Alkoholic";
     })
     .map((json: IJSON) => {
-      // console.log(typeof json, json);
       return {
         id: json.idDrink,
         name: json.strDrink,

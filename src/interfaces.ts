@@ -69,10 +69,6 @@ export interface ICocktailContext {
   favoritesSet?: Set<string>;
   addFavorite?: (cocktail: ICocktail) => void;
   removeFavorite?: (id: string) => void;
-  // handleSearchCocktailsClick: (
-  //   event: MouseEvent<HTMLFormElement>,
-  //   searchParams: ISearchParams
-  // ) => void;
 }
 
 export interface ISearchParams {
@@ -92,13 +88,7 @@ export interface IFilterParam {
 }
 
 export interface IFilterParams {
-  command: string; // "filter.php?";
+  command: string;
   paramArray: Array<IFilterParam>;
   alcoholicFilter?: IFilterParam;
-  // categoryVar: string; //"c=";
-  // useCategory?: boolean;
-  // category?: string;
-  // glassTypeVar: string; //"g=";
-  // useGlassType?: boolean;
-  // glassType?: string;
 }

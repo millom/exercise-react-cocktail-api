@@ -3,7 +3,6 @@ import {
   createRoutesFromElements,
   Route,
 } from "react-router-dom";
-// import { App } from "./components";
 import {
   CocktailDetailsPage,
   ErrorPage,
@@ -12,7 +11,6 @@ import {
   SearchPage,
 } from "./pages";
 import { RootLayout } from "./pages";
-// import RootLayout from "./components/RootLayout";
 
 export const router = createBrowserRouter(
   createRoutesFromElements(
