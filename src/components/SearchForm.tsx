@@ -14,7 +14,7 @@ export function SearchForm(): ReactElement {
     searchFormUiParams,
     updateSearchFormUiParams,
     updateCocktails,
-    nonAlkoholic,
+    nonAlcoholic: nonAlkoholic,
     baseUrl,
   } = useCocktailsContext();
   const nameRef = useRef<HTMLInputElement>(null);
@@ -51,19 +51,19 @@ export function SearchForm(): ReactElement {
     const decideHowToHandleAlkoholic: () => AlkoholicType = () => {
       // Only show non Alkoholic, is set global in header
       // if (nonAlkoholic) {
-      if (searchFormUiParams.onlyNonAlkoholicGlobal) {
+      if (searchFormUiParams.onlyNonAlcoholicGlobal) {
         return AlkoholicType.NON_ALKOHOLIC;
       }
 
       // Alkoholic is not selected in search -> Don't care
       // if (!alcoholicCheckRef.current!.checked) {
-      if (!searchFormUiParams.isAlkoholic.use) {
+      if (!searchFormUiParams.isAlcoholic.use) {
         return AlkoholicType.DONT_CARE;
       }
 
       // Alkoholix is set in search and must be handled
       // return alcoholicRef.current!.checked
-      return searchFormUiParams.isAlkoholic.valueBool
+      return searchFormUiParams.isAlcoholic.valueBool
         ? AlkoholicType.ALKOHOLIC
         : AlkoholicType.NON_ALKOHOLIC;
     };
@@ -234,8 +234,8 @@ export function SearchForm(): ReactElement {
     // setFilterParams(filterParams);
     nameCheckRef.current!.checked = searchFormUiParams.name.use;
     nameRef.current!.value = searchFormUiParams.name.valueStr as string;
-    alcoholicCheckRef.current!.checked = searchFormUiParams.isAlkoholic.use;
-    alcoholicRef.current!.checked = searchFormUiParams.isAlkoholic
+    alcoholicCheckRef.current!.checked = searchFormUiParams.isAlcoholic.use;
+    alcoholicRef.current!.checked = searchFormUiParams.isAlcoholic
       .valueBool as boolean;
     categoryCheckRef.current!.checked = searchFormUiParams.category.use;
     categoryRef.current!.value = searchFormUiParams.category.valueStr as string;
@@ -283,7 +283,7 @@ export function SearchForm(): ReactElement {
           onChange={(event) => {
             filterParams.alcoholicFilter!.use =
               searchParams.alcoholicFilter!.use = event.target.checked;
-            searchFormUiParams.isAlkoholic.use = event.target.checked;
+            searchFormUiParams.isAlcoholic.use = event.target.checked;
             updateSearchFormUiParams(searchFormUiParams);
           }}
           ref={alcoholicCheckRef}
@@ -296,7 +296,7 @@ export function SearchForm(): ReactElement {
           onChange={(event) => {
             filterParams.alcoholicFilter!.isAlcohol =
               searchParams.alcoholicFilter!.isAlcohol = event.target.checked;
-            searchFormUiParams.isAlkoholic.valueBool = event.target.checked;
+            searchFormUiParams.isAlcoholic.valueBool = event.target.checked;
             updateSearchFormUiParams(searchFormUiParams);
           }}
           // defaultValue="false"

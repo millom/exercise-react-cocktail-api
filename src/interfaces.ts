@@ -78,8 +78,8 @@ export interface ICocktailContext {
   cocktails: ICocktail[];
   updateCocktails: (c: ICocktail[]) => void;
   baseUrl: string;
-  nonAlkoholic: boolean;
-  updateNonAlkoholic: (nonAlkoholic: boolean) => void;
+  nonAlcoholic: boolean;
+  updateNonAlcoholic: (nonAlcoholic: boolean) => void;
   favorites?: ICocktail[];
   favoritesSet?: Set<string>;
   addFavorite?: (cocktail: ICocktail) => void;
@@ -124,9 +124,9 @@ export interface ISearchFormUiParams {
   searchPhpFileName: string;
   filterPhpFileName: string;
   lookupPhpFileName?: string;
-  onlyNonAlkoholicGlobal: boolean;
+  onlyNonAlcoholicGlobal: boolean;
   name: IFormUiParam;
-  isAlkoholic: IFormUiParam;
+  isAlcoholic: IFormUiParam;
   category: IFormUiParam;
   ingredients: IFormUiParam;
   glassTypes: IFormUiParam;

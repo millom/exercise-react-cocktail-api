@@ -6,8 +6,12 @@ import { useCocktailsContext } from "../hooks";
 import { getJSonDataUsingFetchNoCache } from "../fetchFunctions";
 
 export function LandingPage(): ReactElement {
-  const { nonAlkoholic, baseUrl, cocktail, updateCocktail } =
-    useCocktailsContext();
+  const {
+    nonAlcoholic: nonAlkoholic,
+    baseUrl,
+    cocktail,
+    updateCocktail,
+  } = useCocktailsContext();
 
   const handleUpdateRandomClick: () => void = () => {
     const setRandomCocktail = async () => {

@@ -8,7 +8,7 @@ import { LikeButton } from "../components";
 
 export function CocktailDetailsPage(): ReactElement {
   const params = useParams();
-  const { nonAlkoholic, baseUrl } = useCocktailsContext();
+  const { nonAlcoholic: nonAlkoholic, baseUrl } = useCocktailsContext();
   let defaultCocktail: ICocktail | undefined;
   const [cocktail, setCocktail] = useState(defaultCocktail);
 

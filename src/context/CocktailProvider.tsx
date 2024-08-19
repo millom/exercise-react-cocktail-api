@@ -28,14 +28,14 @@ export function CocktailProvider({
   const defaultSearchFormUiParams: ISearchFormUiParams = {
     searchPhpFileName: "search.php?",
     filterPhpFileName: "filter.php?",
-    onlyNonAlkoholicGlobal: false,
+    onlyNonAlcoholicGlobal: false,
     name: {
       use: true,
       paramName: "s",
       paramNameShort: "f",
       valueStr: "margarita",
     },
-    isAlkoholic: {
+    isAlcoholic: {
       use: false,
       paramName: "a",
       valueBool: false,
@@ -88,7 +88,7 @@ export function CocktailProvider({
     nonAlkoholic
   ) => {
     setOnlyNonAlkoholic(nonAlkoholic);
-    searchFormUiParams.onlyNonAlkoholicGlobal = nonAlkoholic;
+    searchFormUiParams.onlyNonAlcoholicGlobal = nonAlkoholic;
     updateSearchFormUiParams(searchFormUiParams);
   };
 
@@ -150,8 +150,8 @@ export function CocktailProvider({
     updateCocktail,
     cocktails,
     updateCocktails,
-    nonAlkoholic: nonAlkoholic,
-    updateNonAlkoholic: updateNonAlkoholic,
+    nonAlcoholic: nonAlkoholic,
+    updateNonAlcoholic: updateNonAlkoholic,
     favorites,
     favoritesSet,
     addFavorite,

@@ -4,7 +4,7 @@ import { useCocktailsContext } from "../hooks";
 export function Header(): ReactElement {
   const {
     // nonAlkoholic,
-    updateNonAlkoholic,
+    updateNonAlcoholic: updateNonAlkoholic,
     // searchFormUiParams,
     // updateSearchFormUiParams,
   } = useCocktailsContext();

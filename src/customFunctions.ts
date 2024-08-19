@@ -309,20 +309,20 @@ export const getFilterParams: (uiParams: ISearchFormUiParams) => string = (
     filterStr += uiParams.glassTypes.valueStr!.replace(" ", "_");
   }
 
-  if (uiParams.onlyNonAlkoholicGlobal) {
+  if (uiParams.onlyNonAlcoholicGlobal) {
     if (addedBefore) filterStr += "&";
     addedBefore = true;
-    filterStr += uiParams.isAlkoholic.paramName;
+    filterStr += uiParams.isAlcoholic.paramName;
     filterStr += "=";
-    filterStr += uiParams.isAlkoholic.falseValue;
-  } else if (uiParams.isAlkoholic.use) {
+    filterStr += uiParams.isAlcoholic.falseValue;
+  } else if (uiParams.isAlcoholic.use) {
     if (addedBefore) filterStr += "&";
     addedBefore = true;
-    filterStr += uiParams.isAlkoholic.paramName;
+    filterStr += uiParams.isAlcoholic.paramName;
     filterStr += "=";
-    filterStr += uiParams.isAlkoholic.valueBool
-      ? uiParams.isAlkoholic.trueValue
-      : uiParams.isAlkoholic.falseValue;
+    filterStr += uiParams.isAlcoholic.valueBool
+      ? uiParams.isAlcoholic.trueValue
+      : uiParams.isAlcoholic.falseValue;
   }
 
   // for (const param of filterParams.paramArray) {
