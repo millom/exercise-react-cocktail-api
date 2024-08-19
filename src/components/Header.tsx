@@ -11,7 +11,7 @@ export function Header(): ReactElement {
   return (
     <div className="header">
       <div className="header-img"></div>
-      <div className="non-alkoholic-container">
+      <div className="hidden non-alkoholic-container">
         <input
           id="nonAlkoholicCheckboxId"
           type="checkbox"

@@ -50,62 +50,87 @@ export function SearchForm(): ReactElement {
 
     const decideHowToHandleAlkoholic: () => AlkoholicType = () => {
       // Only show non Alkoholic, is set global in header
-      if (nonAlkoholic) {
+      // if (nonAlkoholic) {
+      if (searchFormUiParams.onlyNonAlkoholicGlobal) {
         return AlkoholicType.NON_ALKOHOLIC;
       }
 
       // Alkoholic is not selected in search -> Don't care
-      if (!alcoholicCheckRef.current!.checked) {
+      // if (!alcoholicCheckRef.current!.checked) {
+      if (!searchFormUiParams.isAlkoholic.use) {
         return AlkoholicType.DONT_CARE;
       }
 
       // Alkoholix is set in search and must be handled
-      return alcoholicRef.current!.checked
+      // return alcoholicRef.current!.checked
+      return searchFormUiParams.isAlkoholic.valueBool
         ? AlkoholicType.ALKOHOLIC
         : AlkoholicType.NON_ALKOHOLIC;
     };
 
-    const updateFetchAndCocktails = async () => {
-      // let url: string = baseUrl + "search.php?";
-      let url: string = baseUrl; // + "filter.php?";
-      // let removeAlkoholic: boolean = nonAlkoholic;
-      let showAlkoholicType = AlkoholicType.DONT_CARE;
-      console.log(searchParams.alcoholicFilter);
-      if (nameCheckRef.current?.checked) {
-        // url += getFilterParams(searchParams);
-        url += getSearchParams(nameRef.current!.value);
-        showAlkoholicType = decideHowToHandleAlkoholic();
-        console.log(
-          "searchParams",
-          searchParams,
-          nonAlkoholic,
-          showAlkoholicType as AlkoholicType,
-          url
-        );
-        // removeAlkoholic ||=
-        //   searchParams.alcoholicFilter !== undefined &&
-        //   searchParams.alcoholicFilter!.use &&
-        //   !searchParams.alcoholicFilter!.isAlcohol;
-      } else {
-        url += getFilterParams(filterParams);
-        showAlkoholicType = nonAlkoholic
-          ? AlkoholicType.NON_ALKOHOLIC
-          : AlkoholicType.DONT_CARE;
-        console.log(
-          "filterParams",
-          filterParams,
-          nonAlkoholic,
-          showAlkoholicType as AlkoholicType,
-          url
-        );
-        // removeAlkoholic =
-        //   removeAlkoholic ||
-        //   (searchParams.alcoholicFilter!.use &&
-        //     !searchParams.alcoholicFilter!.isAlcohol);
-      }
-      console.log("updateFetchAndCocktails", url);
-      const jsonDrinks: IJSON[] = await getJSonDataUsingFetch(url);
+    // const updateFetchAndCocktails = async () => {
+    //   // let url: string = baseUrl + "search.php?";
+    //   let url: string = baseUrl; // + "filter.php?";
+    //   // let removeAlkoholic: boolean = nonAlkoholic;
+    //   let showAlkoholicType = AlkoholicType.DONT_CARE;
+    //   console.log(searchParams.alcoholicFilter);
+    //   if (nameCheckRef.current?.checked) {
+    //     // url += getSearchParams(nameRef.current!.value);
+    //     url += getSearchParams(searchFormUiParams);
+    //     showAlkoholicType = decideHowToHandleAlkoholic();
+    //     console.log(
+    //       "searchParams",
+    //       searchParams,
+    //       nonAlkoholic,
+    //       showAlkoholicType as AlkoholicType,
+    //       url
+    //     );
+    //     // const jsonDrinks: IJSON[] = await getJSonDataUsingFetch(url);
+    //     // removeAlkoholic ||=
+    //     //   searchParams.alcoholicFilter !== undefined &&
+    //     //   searchParams.alcoholicFilter!.use &&
+    //     //   !searchParams.alcoholicFilter!.isAlcohol;
+    //   } else {
+    //     // url += getFilterParams(filterParams);
+    //     url += getFilterParams(searchFormUiParams);
+    //     // showAlkoholicType = nonAlkoholic
+    //     showAlkoholicType = searchFormUiParams.onlyNonAlkoholicGlobal
+    //       ? AlkoholicType.NON_ALKOHOLIC
+    //       : AlkoholicType.DONT_CARE;
+    //     console.log(
+    //       "filterParams",
+    //       filterParams,
+    //       nonAlkoholic,
+    //       showAlkoholicType as AlkoholicType,
+    //       url
+    //     );
+    //     // removeAlkoholic =
+    //     //   removeAlkoholic ||
+    //     //   (searchParams.alcoholicFilter!.use &&
+    //     //     !searchParams.alcoholicFilter!.isAlcohol);
+    //   }
+    //   console.log("updateFetchAndCocktails", url);
+    //   const jsonDrinks: IJSON[] = await getJSonDataUsingFetch(url);
 
+    //   updateCocktails(
+    //     jsonDrinks === null || jsonDrinks === undefined
+    //       ? []
+    //       : // : simpleJsonToCocktails(jsonDrinks, showAlkoholicType)
+    //         simpleJsonToCocktails(
+    //           jsonDrinks,
+    //           searchFormUiParams.onlyNonAlkoholicGlobal
+    //         )
+    //   );
+    // };
+    // updateFetchAndCocktails();
+
+    const fetchSearchAndUpdateData = async () => {
+      // let url: string = baseUrl + "search.php?";
+      let url: string = baseUrl; // + searchFormUiParams.searchPhpFileName;
+      url += getSearchParams(searchFormUiParams);
+      console.log("fetchSearchAndUpdateData", url);
+      const showAlkoholicType: AlkoholicType = decideHowToHandleAlkoholic();
+      const jsonDrinks: IJSON[] = await getJSonDataUsingFetch(url);
       updateCocktails(
         jsonDrinks === null || jsonDrinks === undefined
           ? []
@@ -113,7 +138,75 @@ export function SearchForm(): ReactElement {
       );
     };
 
-    updateFetchAndCocktails();
+    const fetchFilterhAndUpdateData = async () => {
+      let url: string = baseUrl; // + searchFormUiParams.filterPhpFileName;
+      url += getFilterParams(searchFormUiParams);
+      console.log("fetchFilterhAndUpdateData", url);
+      const showAlkoholicType: AlkoholicType = decideHowToHandleAlkoholic();
+      const jsonDrinks: IJSON[] = await getJSonDataUsingFetch(url);
+      updateCocktails(
+        jsonDrinks === null || jsonDrinks === undefined
+          ? []
+          : simpleJsonToCocktails(jsonDrinks, showAlkoholicType)
+      );
+    };
+    // // let removeAlkoholic: boolean = nonAlkoholic;
+    // // let showAlkoholicType = AlkoholicType.DONT_CARE;
+    // console.log(searchParams.alcoholicFilter);
+    // if (nameCheckRef.current?.checked) {
+    //   // url += getSearchParams(nameRef.current!.value);
+    //   showAlkoholicType = decideHowToHandleAlkoholic();
+    //   console.log(
+    //     "searchParams",
+    //     searchParams,
+    //     nonAlkoholic,
+    //     showAlkoholicType as AlkoholicType,
+    //     url
+    //   );
+    //   // const jsonDrinks: IJSON[] = await getJSonDataUsingFetch(url);
+    //   // removeAlkoholic ||=
+    //   //   searchParams.alcoholicFilter !== undefined &&
+    //   //   searchParams.alcoholicFilter!.use &&
+    //   //   !searchParams.alcoholicFilter!.isAlcohol;
+    // } else {
+    //   // url += getFilterParams(filterParams);
+    //   url += getFilterParams(searchFormUiParams);
+    //   // showAlkoholicType = nonAlkoholic
+    //   showAlkoholicType = searchFormUiParams.onlyNonAlkoholicGlobal
+    //     ? AlkoholicType.NON_ALKOHOLIC
+    //     : AlkoholicType.DONT_CARE;
+    //   console.log(
+    //     "filterParams",
+    //     filterParams,
+    //     nonAlkoholic,
+    //     showAlkoholicType as AlkoholicType,
+    //     url
+    //   );
+    //   // removeAlkoholic =
+    //   //   removeAlkoholic ||
+    //   //   (searchParams.alcoholicFilter!.use &&
+    //   //     !searchParams.alcoholicFilter!.isAlcohol);
+    // }
+    // console.log("updateFetchAndCocktails", url);
+    // const jsonDrinks: IJSON[] = await getJSonDataUsingFetch(url);
+
+    // updateCocktails(
+    //   jsonDrinks === null || jsonDrinks === undefined
+    //     ? []
+    //     : // : simpleJsonToCocktails(jsonDrinks, showAlkoholicType)
+    //       simpleJsonToCocktails(
+    //         jsonDrinks,
+    //         searchFormUiParams.onlyNonAlkoholicGlobal
+    //       )
+    // );
+    // };
+
+    if (nameCheckRef.current?.checked) {
+      fetchSearchAndUpdateData();
+    } else {
+      fetchFilterhAndUpdateData();
+    }
+    // updateFetchAndCocktails();
   };
 
   // Set default value for nameCheckRef
@@ -183,7 +276,7 @@ export function SearchForm(): ReactElement {
           // defaultValue={"margarita"}
         />
       </div>
-      <div>
+      <div className="hidden">
         <input
           type="checkbox"
           title="Selected or not"

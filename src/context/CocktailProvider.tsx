@@ -26,25 +26,35 @@ export function CocktailProvider({
   const [cocktails, setCocktails] = useState(defaultCocktails);
   const [nonAlkoholic, setOnlyNonAlkoholic] = useState(false);
   const defaultSearchFormUiParams: ISearchFormUiParams = {
+    searchPhpFileName: "search.php?",
+    filterPhpFileName: "filter.php?",
     onlyNonAlkoholicGlobal: false,
     name: {
       use: true,
+      paramName: "s",
+      paramNameShort: "f",
       valueStr: "margarita",
     },
     isAlkoholic: {
       use: false,
+      paramName: "a",
       valueBool: false,
+      trueValue: "Alcoholic",
+      falseValue: "Non_Alcoholic",
     },
     category: {
       use: false,
+      paramName: "c",
       valueStr: "cocktail",
     },
     glassTypes: {
       use: false,
+      paramName: "g",
       valueStr: "Cocktail glass",
     },
     ingredients: {
       use: false,
+      paramName: "i",
       valueStr: "lime",
     },
     // useName: true,

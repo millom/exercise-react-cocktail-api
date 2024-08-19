@@ -97,11 +97,18 @@ export interface IFilterParams {
 
 interface IFormUiParam {
   use: boolean;
+  paramName?: string;
+  paramNameShort?: string;
   valueStr?: string;
   valueBool?: boolean;
+  trueValue?: string;
+  falseValue?: string;
 }
 
 export interface ISearchFormUiParams {
+  searchPhpFileName: string;
+  filterPhpFileName: string;
+  lookupPhpFileName?: string;
   onlyNonAlkoholicGlobal: boolean;
   name: IFormUiParam;
   isAlkoholic: IFormUiParam;
