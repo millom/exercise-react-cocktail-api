@@ -102,6 +102,7 @@ interface IFormUiParam {
 }
 
 export interface ISearchFormUiParams {
+  onlyNonAlkoholicGlobal: boolean;
   name: IFormUiParam;
   isAlkoholic: IFormUiParam;
   category: IFormUiParam;

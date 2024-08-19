@@ -26,6 +26,7 @@ export function CocktailProvider({
   const [cocktails, setCocktails] = useState(defaultCocktails);
   const [nonAlkoholic, setOnlyNonAlkoholic] = useState(false);
   const defaultSearchFormUiParams: ISearchFormUiParams = {
+    onlyNonAlkoholicGlobal: false,
     name: {
       use: true,
       valueStr: "margarita",
@@ -77,6 +78,8 @@ export function CocktailProvider({
     nonAlkoholic
   ) => {
     setOnlyNonAlkoholic(nonAlkoholic);
+    searchFormUiParams.onlyNonAlkoholicGlobal = nonAlkoholic;
+    updateSearchFormUiParams(searchFormUiParams);
   };
 
   const defaultFavorites: ICocktail[] = [];

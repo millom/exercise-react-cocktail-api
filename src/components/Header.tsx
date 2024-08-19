@@ -2,7 +2,12 @@ import { ReactElement } from "react";
 import { useCocktailsContext } from "../hooks";
 
 export function Header(): ReactElement {
-  const { nonAlkoholic, updateNonAlkoholic } = useCocktailsContext();
+  const {
+    // nonAlkoholic,
+    updateNonAlkoholic,
+    // searchFormUiParams,
+    // updateSearchFormUiParams,
+  } = useCocktailsContext();
   return (
     <div className="header">
       <div className="header-img"></div>
@@ -12,8 +17,11 @@ export function Header(): ReactElement {
           type="checkbox"
           onChange={(event) => {
             updateNonAlkoholic(event.target.checked);
+            // searchFormUiParams.onlyNonAlkoholicGlobal = event.target.checked;
+            // updateSearchFormUiParams(searchFormUiParams);
           }}
-          defaultChecked={nonAlkoholic}
+          // defaultChecked={nonAlkoholic}
+          defaultChecked={false}
           className="non-alkoholic-checkbox"
         />
         <label htmlFor="nonAlkoholicCheckboxId" className="non-alkoholic-label">
