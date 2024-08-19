@@ -58,7 +58,9 @@ export function CocktailDetailsPage(): ReactElement {
               {cocktail?.ingredients?.length &&
                 cocktail?.ingredients?.length > 0 &&
                 cocktail?.ingredients.map((c) => (
-                  <p className="details-collection-item">{c}</p>
+                  <p key={c.id} className="details-collection-item">
+                    {c.name}
+                  </p>
                 ))}
             </div>
           </div>
@@ -68,7 +70,9 @@ export function CocktailDetailsPage(): ReactElement {
               {cocktail?.measurements?.length &&
                 cocktail?.measurements?.length > 0 &&
                 cocktail?.measurements.map((c) => (
-                  <p className="details-collection-item">{c}</p>
+                  <p key={c.id} className="details-collection-item">
+                    {c.name}
+                  </p>
                 ))}
             </div>
           </div>
@@ -78,7 +82,9 @@ export function CocktailDetailsPage(): ReactElement {
               {cocktail?.tags?.length &&
                 cocktail?.tags?.length > 0 &&
                 cocktail?.tags.map((c) => (
-                  <p className="details-collection-item">{c}</p>
+                  <p key={c.id} className="details-collection-item">
+                    {c.name}
+                  </p>
                 ))}
             </div>
           </div>

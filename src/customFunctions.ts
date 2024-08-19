@@ -32,99 +32,193 @@ export const jsonToCocktails: (
         const tagArr: string[] = json.strTags.split(",");
         for (let i = 0; i < tagArr.length; i++) {
           if (json.strTags.length == 0) continue;
-
-          cocktail.tags?.push(tagArr[i]);
+          cocktail.tags?.push({
+            id: (i + 1).toString(),
+            name: tagArr[i],
+          });
         }
       }
-      if (json["strIngredient1"] !== null) {
-        cocktail.ingredients?.push(json["strIngredient1"]);
+      let idCounter: number = 1;
+      if (json.strIngredient1 !== null) {
+        cocktail.ingredients?.push({
+          id: (idCounter++).toString(),
+          name: json.strIngredient1,
+        });
       }
-      if (json["strIngredient2"] !== null) {
-        cocktail.ingredients?.push(json["strIngredient2"]);
+      if (json.strIngredient2 !== null) {
+        cocktail.ingredients?.push({
+          id: (idCounter++).toString(),
+          name: json.strIngredient2,
+        });
       }
-      if (json["strIngredient3"] !== null) {
-        cocktail.ingredients?.push(json["strIngredient3"]);
+      if (json.strIngredient3 !== null) {
+        cocktail.ingredients?.push({
+          id: (idCounter++).toString(),
+          name: json.strIngredient3,
+        });
       }
-      if (json["strIngredient4"] !== null) {
-        cocktail.ingredients?.push(json["strIngredient4"]);
+      if (json.strIngredient4 !== null) {
+        cocktail.ingredients?.push({
+          id: (idCounter++).toString(),
+          name: json.strIngredient4,
+        });
       }
-      if (json["strIngredient5"] !== null) {
-        cocktail.ingredients?.push(json["strIngredient5"]);
+      if (json.strIngredient5 !== null) {
+        cocktail.ingredients?.push({
+          id: (idCounter++).toString(),
+          name: json.strIngredient5,
+        });
       }
-      if (json["strIngredient6"] !== null) {
-        cocktail.ingredients?.push(json["strIngredient6"]);
+      if (json.strIngredient6 !== null) {
+        cocktail.ingredients?.push({
+          id: (idCounter++).toString(),
+          name: json.strIngredient6,
+        });
       }
-      if (json["strIngredient7"] !== null) {
-        cocktail.ingredients?.push(json["strIngredient7"]);
+      if (json.strIngredient7 !== null) {
+        cocktail.ingredients?.push({
+          id: (idCounter++).toString(),
+          name: json.strIngredient7,
+        });
       }
-      if (json["strIngredient8"] !== null) {
-        cocktail.ingredients?.push(json["strIngredient8"]);
+      if (json.strIngredient8 !== null) {
+        cocktail.ingredients?.push({
+          id: (idCounter++).toString(),
+          name: json.strIngredient8,
+        });
       }
-      if (json["strIngredient9"] !== null) {
-        cocktail.ingredients?.push(json["strIngredient9"]);
+      if (json.strIngredient9 !== null) {
+        cocktail.ingredients?.push({
+          id: (idCounter++).toString(),
+          name: json.strIngredient9,
+        });
       }
-      if (json["strIngredient10"] !== null) {
-        cocktail.ingredients?.push(json["strIngredient10"]);
+      if (json.strIngredient10 !== null) {
+        cocktail.ingredients?.push({
+          id: (idCounter++).toString(),
+          name: json.strIngredient10,
+        });
       }
-      if (json["strIngredient11"] !== null) {
-        cocktail.ingredients?.push(json["strIngredient11"]);
+      if (json.strIngredient11 !== null) {
+        cocktail.ingredients?.push({
+          id: (idCounter++).toString(),
+          name: json.strIngredient11,
+        });
       }
-      if (json["strIngredient12"] !== null) {
-        cocktail.ingredients?.push(json["strIngredient12"]);
+      if (json.strIngredient12 !== null) {
+        cocktail.ingredients?.push({
+          id: (idCounter++).toString(),
+          name: json.strIngredient12,
+        });
       }
-      if (json["strIngredient13"] !== null) {
-        cocktail.ingredients?.push(json["strIngredient13"]);
+      if (json.strIngredient13 !== null) {
+        cocktail.ingredients?.push({
+          id: (idCounter++).toString(),
+          name: json.strIngredient13,
+        });
       }
-      if (json["strIngredient14"] !== null) {
-        cocktail.ingredients?.push(json["strIngredient14"]);
+      if (json.strIngredient14 !== null) {
+        cocktail.ingredients?.push({
+          id: (idCounter++).toString(),
+          name: json.strIngredient14,
+        });
       }
-      if (json["strIngredient15"] !== null) {
-        cocktail.ingredients?.push(json["strIngredient15"]);
+      if (json.strIngredient15 !== null) {
+        cocktail.ingredients?.push({
+          id: (idCounter++).toString(),
+          name: json.strIngredient15,
+        });
       }
-      if (json["strMeasure1"] !== null) {
-        cocktail.measurements?.push(json["strMeasure1"]);
+      idCounter = 1;
+      if (json.strMeasure1 !== null) {
+        cocktail.measurements?.push({
+          id: (idCounter++).toString(),
+          name: json.strMeasure1,
+        });
       }
-      if (json["strMeasure2"] !== null) {
-        cocktail.measurements?.push(json["strMeasure2"]);
+      if (json.strMeasure2 !== null) {
+        cocktail.measurements?.push({
+          id: (idCounter++).toString(),
+          name: json.strMeasure2,
+        });
       }
-      if (json["strMeasure3"] !== null) {
-        cocktail.measurements?.push(json["strMeasure3"]);
+      if (json.strMeasure3 !== null) {
+        cocktail.measurements?.push({
+          id: (idCounter++).toString(),
+          name: json.strMeasure3,
+        });
       }
-      if (json["strMeasure4"] !== null) {
-        cocktail.measurements?.push(json["strMeasure4"]);
+      if (json.strMeasure4 !== null) {
+        cocktail.measurements?.push({
+          id: (idCounter++).toString(),
+          name: json.strMeasure4,
+        });
       }
-      if (json["strMeasure5"] !== null) {
-        cocktail.measurements?.push(json["strMeasure5"]);
+      if (json.strMeasure5 !== null) {
+        cocktail.measurements?.push({
+          id: (idCounter++).toString(),
+          name: json.strMeasure5,
+        });
       }
-      if (json["strMeasure6"] !== null) {
-        cocktail.measurements?.push(json["strMeasure6"]);
+      if (json.strMeasure6 !== null) {
+        cocktail.measurements?.push({
+          id: (idCounter++).toString(),
+          name: json.strMeasure6,
+        });
       }
-      if (json["strMeasure7"] !== null) {
-        cocktail.measurements?.push(json["strMeasure7"]);
+      if (json.strMeasure7 !== null) {
+        cocktail.measurements?.push({
+          id: (idCounter++).toString(),
+          name: json.strMeasure7,
+        });
       }
-      if (json["strMeasure8"] !== null) {
-        cocktail.measurements?.push(json["strMeasure8"]);
+      if (json.strMeasure8 !== null) {
+        cocktail.measurements?.push({
+          id: (idCounter++).toString(),
+          name: json.strMeasure8,
+        });
       }
-      if (json["strMeasure9"] !== null) {
-        cocktail.measurements?.push(json["strMeasure9"]);
+      if (json.strMeasure9 !== null) {
+        cocktail.measurements?.push({
+          id: (idCounter++).toString(),
+          name: json.strMeasure9,
+        });
       }
-      if (json["strMeasure10"] !== null) {
-        cocktail.measurements?.push(json["strMeasure10"]);
+      if (json.strMeasure10 !== null) {
+        cocktail.measurements?.push({
+          id: (idCounter++).toString(),
+          name: json.strMeasure10,
+        });
       }
-      if (json["strMeasure11"] !== null) {
-        cocktail.measurements?.push(json["strMeasure11"]);
+      if (json.strMeasure11 !== null) {
+        cocktail.measurements?.push({
+          id: (idCounter++).toString(),
+          name: json.strMeasure11,
+        });
       }
-      if (json["strMeasure12"] !== null) {
-        cocktail.measurements?.push(json["strMeasure12"]);
+      if (json.strMeasure12 !== null) {
+        cocktail.measurements?.push({
+          id: (idCounter++).toString(),
+          name: json.strMeasure12,
+        });
       }
-      if (json["strMeasure13"] !== null) {
-        cocktail.measurements?.push(json["strMeasure13"]);
+      if (json.strMeasure13 !== null) {
+        cocktail.measurements?.push({
+          id: (idCounter++).toString(),
+          name: json.strMeasure13,
+        });
       }
-      if (json["strMeasure14"] !== null) {
-        cocktail.measurements?.push(json["strMeasure14"]);
+      if (json.strMeasure14 !== null) {
+        cocktail.measurements?.push({
+          id: (idCounter++).toString(),
+          name: json.strMeasure14,
+        });
       }
-      if (json["strMeasure15"] !== null) {
-        cocktail.measurements?.push(json["strMeasure15"]);
+      if (json.strMeasure15 !== null) {
+        cocktail.measurements?.push({
+          id: (idCounter++).toString(),
+          name: json.strMeasure15,
+        });
       }
       return cocktail;
     });

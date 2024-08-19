@@ -43,16 +43,31 @@ export interface IJSON {
   strMeasure15: string | null;
 }
 
+interface IIngredient {
+  id: string;
+  name: string;
+}
+
+interface IMeasurement {
+  id: string;
+  name: string;
+}
+
+interface ITag {
+  id: string;
+  name: string;
+}
+
 export interface ICocktail {
   id: string;
   name: string;
-  tags?: string[];
+  tags?: Array<ITag>;
   glass?: string;
   imgSrc?: string;
   category?: string;
   isAlcoholic?: boolean;
-  ingredients?: Array<string>;
-  measurements?: Array<string>;
+  ingredients?: Array<IIngredient>;
+  measurements?: Array<IMeasurement>;
 }
 
 export interface ICocktailContext {
