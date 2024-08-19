@@ -20,10 +20,17 @@ export function CocktailDetailsPage(): ReactElement {
       setCocktail(
         jsonDrinks === null
           ? undefined
-          : jsonToCocktails(jsonDrinks, nonAlkoholic)[0]
+          : // : jsonToCocktails(jsonDrinks, nonAlkoholic)[0]
+            jsonToCocktails(jsonDrinks, false)[0]
         // jsonToCocktails(jsonDrinks, false)[0]
       );
-      console.log("new:", jsonDrinks, cocktail);
+      console.log(
+        "CocktailDetailsPage Effect:",
+        url,
+        jsonDrinks,
+        cocktail,
+        nonAlkoholic
+      );
     };
 
     setCocktailById();
