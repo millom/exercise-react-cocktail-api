@@ -2,12 +2,12 @@ import { ReactElement, useRef, MouseEvent, useEffect, useState } from "react";
 import { useCocktailsContext } from "../hooks";
 import { IJSON, IFilterParams } from "../interfaces";
 import {
-  // jsonToCocktails,
   simpleJsonToCocktails,
-  // getSearchParams,
   getFilterParams,
+  getSearchParams,
 } from "../customFunctions";
 import { getJSonDataUsingFetch } from "../fetchFunctions";
+import { AlkoholicType } from "../enums";
 
 export function SearchForm(): ReactElement {
   const { updateCocktails, nonAlkoholic, baseUrl } = useCocktailsContext();
@@ -42,27 +42,68 @@ export function SearchForm(): ReactElement {
     event.preventDefault();
     console.log("handleSearchCocktailsClick");
 
+    const decideHowToHandleAlkoholic: () => AlkoholicType = () => {
+      // Only show non Alkoholic, is set global in header
+      if (nonAlkoholic) {
+        return AlkoholicType.NON_ALKOHOLIC;
+      }
+
+      // Alkoholic is not selected in search -> Don't care
+      if (!alcoholicCheckRef.current!.checked) {
+        return AlkoholicType.DONT_CARE;
+      }
+
+      // Alkoholix is set in search and must be handled
+      return alcoholicRef.current!.checked
+        ? AlkoholicType.ALKOHOLIC
+        : AlkoholicType.NON_ALKOHOLIC;
+    };
+
     const updateFetchAndCocktails = async () => {
       // let url: string = baseUrl + "search.php?";
       let url: string = baseUrl; // + "filter.php?";
-      let removeAlkoholic: boolean = nonAlkoholic;
+      // let removeAlkoholic: boolean = nonAlkoholic;
+      let showAlkoholicType = AlkoholicType.DONT_CARE;
+      console.log(searchParams.alcoholicFilter);
       if (nameCheckRef.current?.checked) {
-        console.log("searchParams", searchParams);
-        url += getFilterParams(searchParams);
-        removeAlkoholic |=
-          searchParams.alcoholicFilter?.use &&
-          !searchParams.alcoholicFilter?.isAlcohol;
+        // url += getFilterParams(searchParams);
+        url += getSearchParams(nameRef.current!.value);
+        showAlkoholicType = decideHowToHandleAlkoholic();
+        console.log(
+          "searchParams",
+          searchParams,
+          nonAlkoholic,
+          showAlkoholicType as AlkoholicType,
+          url
+        );
+        // removeAlkoholic ||=
+        //   searchParams.alcoholicFilter !== undefined &&
+        //   searchParams.alcoholicFilter!.use &&
+        //   !searchParams.alcoholicFilter!.isAlcohol;
       } else {
-        console.log("filterParams", filterParams);
         url += getFilterParams(filterParams);
+        showAlkoholicType = nonAlkoholic
+          ? AlkoholicType.NON_ALKOHOLIC
+          : AlkoholicType.DONT_CARE;
+        console.log(
+          "filterParams",
+          filterParams,
+          nonAlkoholic,
+          showAlkoholicType as AlkoholicType,
+          url
+        );
+        // removeAlkoholic =
+        //   removeAlkoholic ||
+        //   (searchParams.alcoholicFilter!.use &&
+        //     !searchParams.alcoholicFilter!.isAlcohol);
       }
-      console.log(url);
+      console.log("updateFetchAndCocktails", url);
       const jsonDrinks: IJSON[] = await getJSonDataUsingFetch(url);
 
       updateCocktails(
-        jsonDrinks === null
+        jsonDrinks === null || jsonDrinks === undefined
           ? []
-          : simpleJsonToCocktails(jsonDrinks, removeAlkoholic)
+          : simpleJsonToCocktails(jsonDrinks, showAlkoholicType)
       );
     };
 
@@ -71,7 +112,9 @@ export function SearchForm(): ReactElement {
 
   // Set default value for nameCheckRef
   useEffect(() => {
-    setDisableFilterParams(true);
+    // Use name as default in search
+    // setDisableFilterParams(true);
+
     nameCheckRef.current!.checked = true;
     searchParams.paramArray[0].use = true;
     searchParams.paramArray[0].fieldValue = nameRef.current!.value;
@@ -79,6 +122,7 @@ export function SearchForm(): ReactElement {
       nameRef.current!.value.length > 1 ? "s" : "f";
     searchParams.alcoholicFilter!.use = nonAlkoholic;
     searchParams.alcoholicFilter!.isAlcohol = !nonAlkoholic;
+    setSearchParams(searchParams);
 
     categoryCheckRef.current!.checked = false;
     filterParams.paramArray[0].use = false;
@@ -92,6 +136,7 @@ export function SearchForm(): ReactElement {
     alcoholicCheckRef.current!.checked = nonAlkoholic;
     filterParams.alcoholicFilter!.use = nonAlkoholic;
     filterParams.alcoholicFilter!.isAlcohol = !nonAlkoholic;
+    setFilterParams(filterParams);
   }, []);
 
   return (

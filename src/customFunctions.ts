@@ -1,4 +1,5 @@
 import { ICocktail, IFilterParams, IJSON } from "./interfaces";
+import { AlkoholicType } from "./enums";
 
 export const jsonToCocktails: (
   drinks: IJSON[],
@@ -126,12 +127,26 @@ export const jsonToCocktails: (
 
 export const simpleJsonToCocktails: (
   drinks: IJSON[],
-  nonAlkoholic: boolean
-) => ICocktail[] = (drinks: IJSON[], nonAlkoholic: boolean) => {
+  alkoholicType: AlkoholicType
+) => ICocktail[] = (drinks, alkoholicType) => {
   return drinks
     .filter((json) => {
-      if (!nonAlkoholic) return true;
-      return json.strAlcoholic === "Non_Alkoholic";
+      // if (!alkoholicType) return true;
+      console.log(
+        alkoholicType,
+        json.strAlcoholic,
+        json.strAlcoholic === "Non alcoholic"
+        // !nonAlkoholic && json.strAlcoholic === "Non_Alkoholic"
+      );
+      if (alkoholicType == AlkoholicType.NON_ALKOHOLIC) {
+        return json.strAlcoholic === "Non alcoholic";
+      } else if (alkoholicType == AlkoholicType.ALKOHOLIC) {
+        return json.strAlcoholic === "Alcoholic";
+        // Cont care, show all
+      } else {
+        return true;
+      }
+      // return json.strAlcoholic === "Non_Alkoholic";
     })
     .map((json: IJSON) => {
       return {
