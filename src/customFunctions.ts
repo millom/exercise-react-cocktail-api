@@ -241,12 +241,9 @@ export const getSearchParams: (uiParams: ISearchFormUiParams) => string = (
   }=${uiParams.name.valueStr?.replace(" ", "_")}`;
 };
 
-// export const getFilterParams: (filterParams: IFilterParams) => string = (
 export const getFilterParams: (uiParams: ISearchFormUiParams) => string = (
-  // filterParams
   uiParams
 ) => {
-  // let filterStr: string = filterParams.command;
   let filterStr: string = "filter.php?";
   let addedBefore: boolean = false;
 
@@ -291,22 +288,6 @@ export const getFilterParams: (uiParams: ISearchFormUiParams) => string = (
       ? uiParams.isAlcoholic.trueValue
       : uiParams.isAlcoholic.falseValue;
   }
-
-  // for (const param of filterParams.paramArray) {
-  //   if (!param.use) continue;
-
-  //   if (addedBefore) filterStr += "&";
-
-  //   filterStr += `${param.fieldName}=${param.fieldValue}`;
-  //   addedBefore = true;
-  // }
-
-  // if (filterParams.alcoholicFilter?.use) {
-  //   if (addedBefore) filterStr += "&";
-  //   filterStr += `${filterParams.alcoholicFilter.fieldName}=${
-  //     filterParams.alcoholicFilter.isAlcohol ? "Alcoholic" : "Non_alcoholic"
-  //   }`;
-  // }
 
   return filterStr;
 };

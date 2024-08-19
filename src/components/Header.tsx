@@ -13,7 +13,6 @@ export function Header(): ReactElement {
           onChange={(event) => {
             updateNonAlcoholic(event.target.checked);
           }}
-          // defaultChecked={nonAlkoholic}
           defaultChecked={false}
           className="non-alcoholic-checkbox"
         />

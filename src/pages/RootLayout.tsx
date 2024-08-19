@@ -14,5 +14,3 @@ export function RootLayout(): ReactElement {
     </>
   );
 }
-
-// export default RootLayout;

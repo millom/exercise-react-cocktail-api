@@ -61,8 +61,8 @@ export function CocktailDetailsPage(): ReactElement {
             </div>
           </div>
           <div className="line-collection-container">
-            <label htmlFor="mesurementsId">Mesurements: </label>
-            <div id="mesurementsId" className="details-collection">
+            <label htmlFor="measurementsId">Measurements: </label>
+            <div id="measurementsId" className="details-collection">
               {cocktail?.measurements?.length &&
                 cocktail?.measurements?.length > 0 &&
                 cocktail?.measurements.map((c) => (
