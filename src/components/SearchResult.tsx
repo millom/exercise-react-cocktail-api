@@ -7,7 +7,7 @@ export function SearchResult(): ReactElement {
   const { cocktails } = useCocktailsContext();
   const [currentItems, setCurrentItems] = useState(cocktails);
 
-  const upadteCurrentItems: (newCurrentItems: ICocktail[]) => void = (
+  const updateCurrentItems: (newCurrentItems: ICocktail[]) => void = (
     newCurrentItems
   ) => {
     setCurrentItems(newCurrentItems);
@@ -17,7 +17,7 @@ export function SearchResult(): ReactElement {
     <>
       <div className="cocktail-container search-result-layout">
         <SearchResultList currentItems={currentItems} />
-        <PaginationMenu upadteCurrentItems={upadteCurrentItems} />
+        <PaginationMenu updateCurrentItems={updateCurrentItems} />
       </div>
     </>
   );

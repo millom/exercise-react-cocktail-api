@@ -4,11 +4,11 @@ import { useCocktailsContext } from "../hooks";
 import { ICocktail } from "../interfaces";
 
 interface ISearchResultListProps {
-  upadteCurrentItems: (newCurrentItems: ICocktail[]) => void;
+  updateCurrentItems: (newCurrentItems: ICocktail[]) => void;
 }
 
 export function PaginationMenu({
-  upadteCurrentItems,
+  updateCurrentItems: upadteCurrentItems,
 }: ISearchResultListProps): ReactElement {
   const { cocktails, searchItemsPerPage } = useCocktailsContext();
   const [itemOffset, setItemOffset] = useState(0);
